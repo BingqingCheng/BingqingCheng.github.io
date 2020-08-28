@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How-to: use the asaplib library" href="howto_asaplib.html" />
+    <link rel="next" title="How-to: asap map" href="map.html" />
     <link rel="prev" title="Quick &amp; basic example" href="example.html" /> 
 </head>
 
@@ -87,14 +87,23 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How-to: asap gen_desc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#first-part-of-the-command-asap-gen-desc">First part of the command <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sub-commands">sub-commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#soap">soap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acsf">acsf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cm">cm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#run">run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-sub-commands">Overview of sub-commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#asap-gen-desc">asap gen_desc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-acsf">acsf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-cm">cm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-run">run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-soap">soap</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">How-to: asap map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fit.html">How-to: asap fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kde.html">How-to: asap kde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster.html">How-to: asap map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">How-to: asap select</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howto_asaplib.html">How-to: use the <cite>asaplib</cite> library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
@@ -170,54 +179,8 @@
 This is in general the first step to do, no matter if you want to map the dataset,
 perform regression or any other analysis. Type <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">--help</span></code> and
 <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">sub_command</span> <span class="pre">--help</span></code> for helper strings.</p>
-<div class="section" id="first-part-of-the-command-asap-gen-desc">
-<h2>First part of the command <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code><a class="headerlink" href="#first-part-of-the-command-asap-gen-desc" title="Permalink to this headline">¶</a></h2>
-<p>The first part <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code> will be evaluated before the
-descriptor specific ones, we setup the general stuff here, such as read
-the files.</p>
-<p>Table of specific options:</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">-s</span>, <span class="option">--stride <var>INTEGER</var></span></kbd></dt>
-<dd><p>Read in the xyz trajectory with X stide.
-Default: read/compute all frames.</p>
-</dd>
-</dl>
-<p class="attribution">—periodic / –no-periodic      Is the system periodic? If not specified,
-will infer from the XYZ file.</p>
-</div></blockquote>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">-i</span>, <span class="option">--in_file</span>, <span class="option">--in <var>PATH</var></span></kbd></dt>
-<dd><p>The state file that includes a dictionary-
-like specifications of descriptors to use.</p>
-</dd>
-<dt><kbd><span class="option">-f</span>, <span class="option">--fxyz <var>TEXT</var></span></kbd></dt>
-<dd><p>Input file that contains XYZ coordinates.
-See a list of possible input formats:
-<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">https://wiki.fysik.dtu.dk/ase/ase/io/io.html</a>
-If a wildcard * is used, all files matching
-the pattern is read.</p>
-</dd>
-</dl>
-<p class="attribution">—fxyz_format TEXT              Additional info for the input file format.
-e.g.
-{“format”:”lammps-
-data”,”units”:”metal”,”style”:”full”}</p>
-</div></blockquote>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">-p</span>, <span class="option">--prefix <var>TEXT</var></span></kbd></dt>
-<dd><p>Prefix to be used for the output file.</p>
-</dd>
-</dl>
-<p>-np, –number_processes,        Number of processes when compute the
-–nprocess INTEGER              descriptors in parrallel.  [default: 1]</p>
-<p class="attribution">—help                          Show this message and exit.</p>
-</div></blockquote>
-</div>
-<div class="section" id="sub-commands">
-<h2>sub-commands<a class="headerlink" href="#sub-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview-of-sub-commands">
+<h2>Overview of sub-commands<a class="headerlink" href="#overview-of-sub-commands" title="Permalink to this headline">¶</a></h2>
 <p>sub-commands that controls the actual generation of the descriptor matrix:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -244,75 +207,278 @@ data”,”units”:”metal”,”style”:”full”}</p>
 </tr>
 </tbody>
 </table>
+<div class="section" id="asap-gen-desc">
+<h3>asap gen_desc<a class="headerlink" href="#asap-gen-desc" title="Permalink to this headline">¶</a></h3>
+<p>Descriptor generation command
+This command function evaluated before the descriptor specific ones,
+we setup the general stuff here, such as read the files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap gen_desc <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
 </div>
-<div class="section" id="soap">
-<h2>soap<a class="headerlink" href="#soap" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Generate SOAP descriptors</p>
-</div></blockquote>
-<dl>
-<dt>Options:</dt><dd><dl class="option-list">
-<dt><kbd><span class="option">-c</span>, <span class="option">--cutoff <var>FLOAT</var></span></kbd></dt>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-s">
+<span id="cmdoption-asap-gen_desc-stride"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--stride</code><code class="sig-prename descclassname"> &lt;stride&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in the xyz trajectory with X stide. Default: read/compute all frames.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-periodic">
+<span id="cmdoption-asap-gen_desc-no-periodic"></span><code class="sig-name descname">--periodic</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-periodic</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-periodic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the system periodic? If not specified, will infer from the XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-i">
+<span id="cmdoption-asap-gen_desc-in_file"></span><span id="cmdoption-asap-gen_desc-in"></span><code class="sig-name descname">-i</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--in_file</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--in</code><code class="sig-prename descclassname"> &lt;in_file&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>The state file that includes a dictionary-like specifications of descriptors to use.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-f">
+<span id="cmdoption-asap-gen_desc-fxyz"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fxyz</code><code class="sig-prename descclassname"> &lt;fxyz&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input file that contains XYZ coordinates.                           See a list of possible input formats:                          <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">https://wiki.fysik.dtu.dk/ase/ase/io/io.html</a>                          If a wildcard * is used, all files matching the pattern is read.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-fxyz_format">
+<code class="sig-name descname">--fxyz_format</code><code class="sig-prename descclassname"> &lt;fxyz_format&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-fxyz_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional info for the input file format. e.g.                          {“format”:”lammps-data”,”units”:”metal”,”style”:”full”}</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-p">
+<span id="cmdoption-asap-gen_desc-prefix"></span><code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prefix</code><code class="sig-prename descclassname"> &lt;prefix&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prefix to be used for the output file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-np">
+<span id="cmdoption-asap-gen_desc-number_processes"></span><span id="cmdoption-asap-gen_desc-nprocess"></span><code class="sig-name descname">-np</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--number_processes</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--nprocess</code><code class="sig-prename descclassname"> &lt;number_processes&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-np" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of processes when compute the descriptors in parrallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="asap-gen-desc-acsf">
+<h4>acsf<a class="headerlink" href="#asap-gen-desc-acsf" title="Permalink to this headline">¶</a></h4>
+<p>Generate ACSF descriptors</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap gen_desc acsf <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-c">
+<span id="cmdoption-asap-gen_desc-acsf-cutoff"></span><code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--cutoff</code><code class="sig-prename descclassname"> &lt;cutoff&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-c" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cutoff radius</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-u">
+<span id="cmdoption-asap-gen_desc-acsf-universal_acsf"></span><span id="cmdoption-asap-gen_desc-acsf-uacsf"></span><code class="sig-name descname">-u</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--universal_acsf</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--uacsf</code><code class="sig-prename descclassname"> &lt;universal_acsf&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try out our universal ACSF parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>minimal</p>
 </dd>
-<dt><kbd><span class="option">-n</span>, <span class="option">--nmax <var>INTEGER</var></span></kbd></dt>
-<dd><p>Maximum radial label</p>
-</dd>
-<dt><kbd><span class="option">-l</span>, <span class="option">--lmax <var>INTEGER</var></span></kbd></dt>
-<dd><p>Maximum angular label (&lt;= 9)</p>
-</dd>
-</dl>
-<p>–rbf [gto|polynomial]          Radial basis function  [default: gto]
--sigma, -g, –atom-gaussian-width FLOAT</p>
-<blockquote>
-<div><p>The width of the Gaussian centered on atoms.
-[default: 0.5]</p>
-</div></blockquote>
-<dl class="simple">
-<dt>–crossover / –no-crossover    If to included the crossover of atomic</dt><dd><p>types.  [default: False]</p>
-</dd>
-<dt>-u, –universal_soap, –usoap [none|smart|minimal|longrange]</dt><dd><p>Try out our universal SOAP parameters.
-[default: minimal]</p>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>none|smart|minimal|longrange</p>
 </dd>
 </dl>
-<dl class="option-list">
-<dt><kbd><span class="option">--tag <var>TEXT</var></span></kbd></dt>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-tag">
+<code class="sig-name descname">--tag</code><code class="sig-prename descclassname"> &lt;tag&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tag for the descriptors.</p>
-</dd>
-<dt><kbd><span class="option">-p<var>a</var></span>, <span class="option">--peratom</span></kbd></dt>
-<dd><p>Save the per-atom local descriptors.
-[default: False]</p>
-</dd>
-<dt><kbd><span class="option">-e</span>, <span class="option">--element_wise</span></kbd></dt>
-<dd><p>element-wise operation to get global
-descriptors from the atomic soap vectors
-[default: False]</p>
-</dd>
-<dt><kbd><span class="option">-z</span>, <span class="option">--zeta <var>INTEGER</var></span></kbd></dt>
-<dd><p>Moments to take when converting atomic
-descriptors to global ones.</p>
-</dd>
-<dt><kbd><span class="option">-r</span>, <span class="option">--reducer_type <var>TEXT</var></span></kbd></dt>
-<dd><p>type of operations to get global descriptors
-from the atomic soap vectors, e.g.
-[average], [sum], [moment_avg],
-[moment_sum].  [default: average]</p>
-</dd>
-<dt><kbd><span class="option">--help</span></kbd></dt>
-<dd><p>Show this message and exit.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-pa">
+<span id="cmdoption-asap-gen_desc-acsf-peratom"></span><code class="sig-name descname">-pa</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--peratom</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-pa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the per-atom local descriptors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-e">
+<span id="cmdoption-asap-gen_desc-acsf-element_wise"></span><code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--element_wise</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise operation to get global descriptors from the atomic soap vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-z">
+<span id="cmdoption-asap-gen_desc-acsf-zeta"></span><code class="sig-name descname">-z</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--zeta</code><code class="sig-prename descclassname"> &lt;zeta&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moments to take when converting atomic descriptors to global ones.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-acsf-r">
+<span id="cmdoption-asap-gen_desc-acsf-reducer_type"></span><code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reducer_type</code><code class="sig-prename descclassname"> &lt;reducer_type&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-acsf-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>type of operations to get global descriptors from the atomic soap vectors, e.g.                           [average], [sum], [moment_avg], [moment_sum].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>average</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
-<div class="section" id="acsf">
-<h2>acsf<a class="headerlink" href="#acsf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="asap-gen-desc-cm">
+<h4>cm<a class="headerlink" href="#asap-gen-desc-cm" title="Permalink to this headline">¶</a></h4>
+<p>Generate the Coulomb Matrix descriptors</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap gen_desc cm <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
 </div>
-<div class="section" id="cm">
-<h2>cm<a class="headerlink" href="#cm" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-cm-tag">
+<code class="sig-name descname">--tag</code><code class="sig-prename descclassname"> &lt;tag&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-cm-tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for the descriptors.</p>
+</dd></dl>
+
 </div>
-<div class="section" id="run">
-<h2>run<a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="asap-gen-desc-run">
+<h4>run<a class="headerlink" href="#asap-gen-desc-run" title="Permalink to this headline">¶</a></h4>
+<p>Running analysis using input files</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap gen_desc run <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="asap-gen-desc-soap">
+<h4>soap<a class="headerlink" href="#asap-gen-desc-soap" title="Permalink to this headline">¶</a></h4>
+<p>Generate SOAP descriptors</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap gen_desc soap <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-c">
+<span id="cmdoption-asap-gen_desc-soap-cutoff"></span><code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--cutoff</code><code class="sig-prename descclassname"> &lt;cutoff&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cutoff radius</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-n">
+<span id="cmdoption-asap-gen_desc-soap-nmax"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--nmax</code><code class="sig-prename descclassname"> &lt;nmax&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum radial label</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-l">
+<span id="cmdoption-asap-gen_desc-soap-lmax"></span><code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--lmax</code><code class="sig-prename descclassname"> &lt;lmax&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum angular label (&lt;= 9)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-rbf">
+<code class="sig-name descname">--rbf</code><code class="sig-prename descclassname"> &lt;rbf&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-rbf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radial basis function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>gto</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>gto|polynomial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-sigma">
+<span id="cmdoption-asap-gen_desc-soap-g"></span><span id="cmdoption-asap-gen_desc-soap-atom-gaussian-width"></span><code class="sig-name descname">-sigma</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">-g</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--atom-gaussian-width</code><code class="sig-prename descclassname"> &lt;atom_gaussian_width&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>The width of the Gaussian centered on atoms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.5</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-crossover">
+<span id="cmdoption-asap-gen_desc-soap-no-crossover"></span><code class="sig-name descname">--crossover</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-crossover</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-crossover" title="Permalink to this definition">¶</a></dt>
+<dd><p>If to included the crossover of atomic types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-u">
+<span id="cmdoption-asap-gen_desc-soap-universal_soap"></span><span id="cmdoption-asap-gen_desc-soap-usoap"></span><code class="sig-name descname">-u</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--universal_soap</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--usoap</code><code class="sig-prename descclassname"> &lt;universal_soap&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try out our universal SOAP parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>minimal</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>none|smart|minimal|longrange</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-tag">
+<code class="sig-name descname">--tag</code><code class="sig-prename descclassname"> &lt;tag&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for the descriptors.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-pa">
+<span id="cmdoption-asap-gen_desc-soap-peratom"></span><code class="sig-name descname">-pa</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--peratom</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-pa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the per-atom local descriptors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-e">
+<span id="cmdoption-asap-gen_desc-soap-element_wise"></span><code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--element_wise</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise operation to get global descriptors from the atomic soap vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-z">
+<span id="cmdoption-asap-gen_desc-soap-zeta"></span><code class="sig-name descname">-z</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--zeta</code><code class="sig-prename descclassname"> &lt;zeta&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moments to take when converting atomic descriptors to global ones.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-gen_desc-soap-r">
+<span id="cmdoption-asap-gen_desc-soap-reducer_type"></span><code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--reducer_type</code><code class="sig-prename descclassname"> &lt;reducer_type&gt;</code><a class="headerlink" href="#cmdoption-asap-gen_desc-soap-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>type of operations to get global descriptors from the atomic soap vectors, e.g.                           [average], [sum], [moment_avg], [moment_sum].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>average</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>More documentation to be added.</p>
@@ -328,7 +494,7 @@ from the atomic soap vectors, e.g.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="howto_asaplib.html" class="btn btn-neutral float-right" title="How-to: use the asaplib library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="map.html" class="btn btn-neutral float-right" title="How-to: asap map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="example.html" class="btn btn-neutral float-left" title="Quick &amp; basic example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

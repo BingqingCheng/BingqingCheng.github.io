@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How-to: asap map &mdash; asapdoc 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How-to: asap fit" href="fit.html" />
+    <link rel="prev" title="How-to: asap gen_desc" href="gen_desc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> asapdoc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How-to: asap map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-sub-commands">Overview of sub-commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#asap-map">asap map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#asap-map-pca">pca</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-map-raw">raw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-map-skpca">skpca</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-map-tsne">tsne</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asap-map-umap">umap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fit.html">How-to: asap fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kde.html">How-to: asap kde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster.html">How-to: asap map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">How-to: asap select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib.html">How-to: use the <cite>asaplib</cite> library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules of asaplib</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">asapdoc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>How-to: asap map</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/map.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-asap-map">
+<h1>How-to: asap map<a class="headerlink" href="#how-to-asap-map" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">map</span> <span class="pre">sub_command</span></code> is for making low-dimensional projections of the design matrix generated by the command <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code>.</p>
+<div class="section" id="overview-of-sub-commands">
+<h2>Overview of sub-commands<a class="headerlink" href="#overview-of-sub-commands" title="Permalink to this headline">¶</a></h2>
+<p>sub-commands that controls which algorithm to use for the dimensionality reduction:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pca</p></td>
+<td><p>Principal Component Analysis</p></td>
+</tr>
+<tr class="row-odd"><td><p>raw</p></td>
+<td><p>Just plot the raw coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p>skpca</p></td>
+<td><p>Sparse Kernel Principal Component Analysis</p></td>
+</tr>
+<tr class="row-odd"><td><p>tsne</p></td>
+<td><p>t-SNE</p></td>
+</tr>
+<tr class="row-even"><td><p>umap</p></td>
+<td><p>UMAP</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="asap-map">
+<h3>asap map<a class="headerlink" href="#asap-map" title="Permalink to this headline">¶</a></h3>
+<p>Making 2D maps using dimensionality reduction.
+This command function evaluated before the specific ones,
+we setup the general stuff here, such as read the files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-f">
+<span id="cmdoption-asap-map-fxyz"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--fxyz</code><code class="sig-prename descclassname"> &lt;fxyz&gt;</code><a class="headerlink" href="#cmdoption-asap-map-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Input file that contains XYZ coordinates.                           See a list of possible input formats:                          <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">https://wiki.fysik.dtu.dk/ase/ase/io/io.html</a>                          If a wildcard * is used, all files matching the pattern is read.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-p">
+<span id="cmdoption-asap-map-prefix"></span><code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--prefix</code><code class="sig-prename descclassname"> &lt;prefix&gt;</code><a class="headerlink" href="#cmdoption-asap-map-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prefix to be used for the output file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-only_use_species">
+<code class="sig-name descname">--only_use_species</code><code class="sig-prename descclassname"> &lt;only_use_species&gt;</code><a class="headerlink" href="#cmdoption-asap-map-only_use_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only use the atomic descriptors of species with the specified atomic number.                           Only makes sense if already using –use_atomic_descriptors.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-ua">
+<span id="cmdoption-asap-map-use_atomic_descriptors"></span><span id="cmdoption-asap-map-use_atomic"></span><code class="sig-name descname">-ua</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--use_atomic_descriptors</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--use_atomic</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-ua" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use atomic descriptors instead of global ones.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-dm">
+<span id="cmdoption-asap-map-design_matrix"></span><code class="sig-name descname">-dm</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--design_matrix</code><code class="sig-prename descclassname"> &lt;design_matrix&gt;</code><a class="headerlink" href="#cmdoption-asap-map-dm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location of descriptor matrix file or name of the tags in ase xyz file                           the type is a list  ‘[dm1, dm2]’, as we can put together simutanously several design matrix.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-s">
+<span id="cmdoption-asap-map-style"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--style</code><code class="sig-prename descclassname"> &lt;style&gt;</code><a class="headerlink" href="#cmdoption-asap-map-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Style of the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>default</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>default|journal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-ar">
+<span id="cmdoption-asap-map-aspect_ratio"></span><code class="sig-name descname">-ar</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--aspect_ratio</code><code class="sig-prename descclassname"> &lt;aspect_ratio&gt;</code><a class="headerlink" href="#cmdoption-asap-map-ar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aspect ratio of the plot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-a">
+<span id="cmdoption-asap-map-annotate"></span><code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--annotate</code><code class="sig-prename descclassname"> &lt;annotate&gt;</code><a class="headerlink" href="#cmdoption-asap-map-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location of tags to annotate the samples.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-adjusttext">
+<span id="cmdoption-asap-map-no-adjusttext"></span><code class="sig-name descname">--adjusttext</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-adjusttext</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-adjusttext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust the annotation texts so they do not overlap.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-peratom">
+<code class="sig-name descname">--peratom</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-peratom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the per-atom projection.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-ep">
+<span id="cmdoption-asap-map-extra-properties"></span><code class="sig-name descname">-ep</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--extra-properties</code><code class="sig-prename descclassname"> &lt;extra_properties&gt;</code><a class="headerlink" href="#cmdoption-asap-map-ep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional properties to be read for each frmae in CSV format.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-o">
+<span id="cmdoption-asap-map-output"></span><code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--output</code><code class="sig-prename descclassname"> &lt;output&gt;</code><a class="headerlink" href="#cmdoption-asap-map-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output file format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>xyz|matrix|none|chemiscope</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-keepraw">
+<span id="cmdoption-asap-map-no-keepraw"></span><code class="sig-name descname">--keepraw</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-keepraw</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-keepraw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep the high dimensional descriptor when output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-c">
+<span id="cmdoption-asap-map-color"></span><code class="sig-name descname">-c</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--color</code><code class="sig-prename descclassname"> &lt;color&gt;</code><a class="headerlink" href="#cmdoption-asap-map-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location of a file or name of the properties in the XYZ file.                      Used to color the scatter plot for all samples (N floats).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-ccol">
+<span id="cmdoption-asap-map-color_column"></span><code class="sig-name descname">-ccol</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--color_column</code><code class="sig-prename descclassname"> &lt;color_column&gt;</code><a class="headerlink" href="#cmdoption-asap-map-ccol" title="Permalink to this definition">¶</a></dt>
+<dd><p>The column number used in the color file. Starts from 0.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-clab">
+<span id="cmdoption-asap-map-color_label"></span><code class="sig-name descname">-clab</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--color_label</code><code class="sig-prename descclassname"> &lt;color_label&gt;</code><a class="headerlink" href="#cmdoption-asap-map-clab" title="Permalink to this definition">¶</a></dt>
+<dd><p>The label for the color bar.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-c0">
+<span id="cmdoption-asap-map-color_from_zero"></span><code class="sig-name descname">-c0</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--color_from_zero</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-c0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum to zero and only plot the excess.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-cmap">
+<span id="cmdoption-asap-map-colormap"></span><code class="sig-name descname">-cmap</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--colormap</code><code class="sig-prename descclassname"> &lt;colormap&gt;</code><a class="headerlink" href="#cmdoption-asap-map-cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Colormap used. Common options: gnuplot, tab10, viridis, bwr, rainbow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>gnuplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-nbs">
+<span id="cmdoption-asap-map-normalized_by_size"></span><code class="sig-name descname">-nbs</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--normalized_by_size</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-nbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the quantity used for color function by the number of atoms in each frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="asap-map-pca">
+<h4>pca<a class="headerlink" href="#asap-map-pca" title="Permalink to this headline">¶</a></h4>
+<p>Principal Component Analysis</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map pca <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-pca-scale">
+<span id="cmdoption-asap-map-pca-no-scale"></span><code class="sig-name descname">--scale</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-scale</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-pca-scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard scaling of the coordinates.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-pca-d">
+<span id="cmdoption-asap-map-pca-dimension"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dimension</code><code class="sig-prename descclassname"> &lt;dimension&gt;</code><a class="headerlink" href="#cmdoption-asap-map-pca-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of the dimensions to keep in the output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-pca-axes">
+<code class="sig-name descname">--axes</code><code class="sig-prename descclassname"> &lt;axes&gt;</code><a class="headerlink" href="#cmdoption-asap-map-pca-axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the projection along which projection axes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="asap-map-raw">
+<h4>raw<a class="headerlink" href="#asap-map-raw" title="Permalink to this headline">¶</a></h4>
+<p>Just plot the raw coordinates</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map raw <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-raw-scale">
+<span id="cmdoption-asap-map-raw-no-scale"></span><code class="sig-name descname">--scale</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-scale</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-raw-scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard scaling of the coordinates.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-raw-d">
+<span id="cmdoption-asap-map-raw-dimension"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dimension</code><code class="sig-prename descclassname"> &lt;dimension&gt;</code><a class="headerlink" href="#cmdoption-asap-map-raw-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of the dimensions to keep in the output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-raw-axes">
+<code class="sig-name descname">--axes</code><code class="sig-prename descclassname"> &lt;axes&gt;</code><a class="headerlink" href="#cmdoption-asap-map-raw-axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the projection along which projection axes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="asap-map-skpca">
+<h4>skpca<a class="headerlink" href="#asap-map-skpca" title="Permalink to this headline">¶</a></h4>
+<p>Sparse Kernel Principal Component Analysis</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map skpca <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-scale">
+<span id="cmdoption-asap-map-skpca-no-scale"></span><code class="sig-name descname">--scale</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-scale</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-skpca-scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard scaling of the coordinates.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-d">
+<span id="cmdoption-asap-map-skpca-dimension"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dimension</code><code class="sig-prename descclassname"> &lt;dimension&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of the dimensions to keep in the output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-axes">
+<code class="sig-name descname">--axes</code><code class="sig-prename descclassname"> &lt;axes&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the projection along which projection axes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-k">
+<span id="cmdoption-asap-map-skpca-kernel"></span><code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kernel</code><code class="sig-prename descclassname"> &lt;kernel&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kernel function for converting design matrix to kernel matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>linear</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>linear|polynomial|cosine</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-kp">
+<span id="cmdoption-asap-map-skpca-kernel_parameter"></span><code class="sig-name descname">-kp</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kernel_parameter</code><code class="sig-prename descclassname"> &lt;kernel_parameter&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-kp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameter used in the kernel function.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-s">
+<span id="cmdoption-asap-map-skpca-sparse_mode"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--sparse_mode</code><code class="sig-prename descclassname"> &lt;sparse_mode&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sparsification method to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>fps</p>
+</dd>
+<dt class="field-even">Options</dt>
+<dd class="field-even"><p>random|cur|fps|sequential</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-skpca-n">
+<span id="cmdoption-asap-map-skpca-n_sparse"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n_sparse</code><code class="sig-prename descclassname"> &lt;n_sparse&gt;</code><a class="headerlink" href="#cmdoption-asap-map-skpca-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of the representative samples, set negative if using no sparsification</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>100</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="asap-map-tsne">
+<h4>tsne<a class="headerlink" href="#asap-map-tsne" title="Permalink to this headline">¶</a></h4>
+<p>t-SNE</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map tsne <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-metric">
+<code class="sig-name descname">--metric</code><code class="sig-prename descclassname"> &lt;metric&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>controls how distance is computed in the ambient space of the input data.                     See: <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html">https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>euclidean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-l">
+<span id="cmdoption-asap-map-tsne-learning_rate"></span><code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--learning_rate</code><code class="sig-prename descclassname"> &lt;learning_rate&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>The learning rate is usually in the range [10.0, 1000.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>200.0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-e">
+<span id="cmdoption-asap-map-tsne-early_exaggeration"></span><code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--early_exaggeration</code><code class="sig-prename descclassname"> &lt;early_exaggeration&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls how tight natural clusters in the original space are in the embedded space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>12.0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-p">
+<span id="cmdoption-asap-map-tsne-perplexity"></span><code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--perplexity</code><code class="sig-prename descclassname"> &lt;perplexity&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms.                   Larger datasets usually require a larger perplexity.                Consider selecting a value between 5 and 50.                Different values can result in significanlty different results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>30.0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-pca">
+<span id="cmdoption-asap-map-tsne-no-pca"></span><code class="sig-name descname">--pca</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-pca</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-tsne-pca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocessing the data using PCA with dimension 50. Recommended.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-scale">
+<span id="cmdoption-asap-map-tsne-no-scale"></span><code class="sig-name descname">--scale</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-scale</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-tsne-scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard scaling of the coordinates.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-d">
+<span id="cmdoption-asap-map-tsne-dimension"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dimension</code><code class="sig-prename descclassname"> &lt;dimension&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of the dimensions to keep in the output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-tsne-axes">
+<code class="sig-name descname">--axes</code><code class="sig-prename descclassname"> &lt;axes&gt;</code><a class="headerlink" href="#cmdoption-asap-map-tsne-axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the projection along which projection axes.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="asap-map-umap">
+<h4>umap<a class="headerlink" href="#asap-map-umap" title="Permalink to this headline">¶</a></h4>
+<p>UMAP</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asap map umap <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-nn">
+<span id="cmdoption-asap-map-umap-n_neighbors"></span><code class="sig-name descname">-nn</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n_neighbors</code><code class="sig-prename descclassname"> &lt;n_neighbors&gt;</code><a class="headerlink" href="#cmdoption-asap-map-umap-nn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Controls how UMAP balances local versus global structure in the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>10</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-md">
+<span id="cmdoption-asap-map-umap-min_dist"></span><code class="sig-name descname">-md</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--min_dist</code><code class="sig-prename descclassname"> &lt;min_dist&gt;</code><a class="headerlink" href="#cmdoption-asap-map-umap-md" title="Permalink to this definition">¶</a></dt>
+<dd><p>controls how tightly UMAP is allowed to pack points together.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>0.1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-metric">
+<code class="sig-name descname">--metric</code><code class="sig-prename descclassname"> &lt;metric&gt;</code><a class="headerlink" href="#cmdoption-asap-map-umap-metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>controls how distance is computed in the ambient space of the input data.                     See: <a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/parameters.html#metric">https://umap-learn.readthedocs.io/en/latest/parameters.html#metric</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>euclidean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-scale">
+<span id="cmdoption-asap-map-umap-no-scale"></span><code class="sig-name descname">--scale</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-scale</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-asap-map-umap-scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard scaling of the coordinates.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-d">
+<span id="cmdoption-asap-map-umap-dimension"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dimension</code><code class="sig-prename descclassname"> &lt;dimension&gt;</code><a class="headerlink" href="#cmdoption-asap-map-umap-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of the dimensions to keep in the output XYZ file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-asap-map-umap-axes">
+<code class="sig-name descname">--axes</code><code class="sig-prename descclassname"> &lt;axes&gt;</code><a class="headerlink" href="#cmdoption-asap-map-umap-axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the projection along which projection axes.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More documentation to be added.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fit.html" class="btn btn-neutral float-right" title="How-to: asap fit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gen_desc.html" class="btn btn-neutral float-left" title="How-to: asap gen_desc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Bingqing Cheng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
