@@ -85,7 +85,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules in ASAP</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules of asaplib</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="asaplib.html">asaplib package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="asaplib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="asaplib.cli.html">asaplib.cli package</a></li>
@@ -106,7 +110,6 @@
 <li class="toctree-l3"><a class="reference internal" href="asaplib.html#module-asaplib">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +158,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Modules in ASAP</a> &raquo;</li>
+          <li><a href="modules.html">modules of asaplib</a> &raquo;</li>
         
           <li><a href="asaplib.html">asaplib package</a> &raquo;</li>
         
@@ -183,6 +186,9 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="asaplib-compressor-bck-fps-module">
+<h2>asaplib.compressor.bck-fps module<a class="headerlink" href="#asaplib-compressor-bck-fps-module" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="module-asaplib.compressor.cur">
 <span id="asaplib-compressor-cur-module"></span><h2>asaplib.compressor.cur module<a class="headerlink" href="#module-asaplib.compressor.cur" title="Permalink to this headline">¶</a></h2>
 <p>CUR matrix decomposition is a low-rank matrix decomposition algorithm that is explicitly expressed in a small number of actual columns and/or actual rows of data matrix.</p>
@@ -194,17 +200,18 @@ X = C U R</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>input a covariance matrix</em>) – </p></li>
-<li><p><strong>n_col</strong> (<em>number of column to keep</em>) – </p></li>
-<li><p><strong>error_estimate</strong> (<em>compute the remaining error of the CUR</em>) – </p></li>
-<li><p><strong>costs</strong> (<em>a list of costs associated with each column</em>) – </p></li>
+<li><p><strong>X</strong> (<em>np.matrix</em>) – input a covariance matrix</p></li>
+<li><p><strong>n_col</strong> (<em>int</em>) – number of column to keep</p></li>
+<li><p><strong>error_estimate</strong> (<em>bool</em><em>, </em><em>optional</em>) – compute the remaining error of the CUR</p></li>
+<li><p><strong>costs</strong> (<em>float</em><em>, </em><em>optional</em>) – a list of costs associated with each column</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>a list of selected columns</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>indices</strong> (<em>np.array</em>) – indices of columns to choose</p></li>
+<li><p><strong>cur_error</strong> (<em>np.array</em>) – the error of the decomposition</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -280,35 +287,48 @@ the selected columns. Not necessarily meaningful in every situation.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>np.matrix.</em><em>[</em><em>n_samples</em><em>, </em><em>n_dim</em><em>] </em><em>coordinates of all the samples to be sparsified.</em>) – </p></li>
-<li><p><strong>d</strong> (<em>number of samples to keep</em>) – </p></li>
-<li><p><strong>r</strong> (<em>starting from sample of index r</em>) – </p></li>
+<li><p><strong>x</strong> (<em>np.matrix</em>) – [n_samples, n_dim] coordinates of all the samples to be sparsified.</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – number of samples to keep</p></li>
+<li><p><strong>r</strong> (<em>int</em>) – starting from sample of index r</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p><strong>sample_index</strong> – a list of selected samples, remaining error</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>a list of selected samples, remaining error</p>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
 
 </div>
+<div class="section" id="asaplib-compressor-pep-fps-module">
+<h2>asaplib.compressor.pep-fps module<a class="headerlink" href="#asaplib-compressor-pep-fps-module" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="module-asaplib.compressor.reweight">
 <span id="asaplib-compressor-reweight-module"></span><h2>asaplib.compressor.reweight module<a class="headerlink" href="#module-asaplib.compressor.reweight" title="Permalink to this headline">¶</a></h2>
-<p>Select samples using a re-weighted distribution
-The original distribution (KDE) of the sample is</p>
-<p>ho = exp(-F)
-and we select the samples using a well-tempered distribution</p>
-<p>ho(lambda) = exp(-F/lambda)</p>
+<p>Select samples using a re-weighted distribution</p>
+<p>The original distribution (KDE) of the sample is
+:math:
+ho = exp(-F)
+and we select the samples using a well-tempered distribution
+:math:
+ho(lambda) = exp(-F/lambda)</p>
 <dl class="py function">
 <dt id="asaplib.compressor.reweight.reweight">
 <code class="sig-prename descclassname">asaplib.compressor.reweight.</code><code class="sig-name descname">reweight</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logkde</span></em>, <em class="sig-param"><span class="n">n_sparse</span></em>, <em class="sig-param"><span class="n">reweight_lambda</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/compressor/reweight.html#reweight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.compressor.reweight.reweight" title="Permalink to this definition">¶</a></dt>
-<dd><p>logkde: list, type=float. The (log of) kernel density for each sample
-reweight_lambda: float, reweighting factor
-n_sparse: int, number of samples to select</p>
-<p>sbs: list, type=int. A list of selected samples</p>
+<dd><dl class="simple">
+<dt>logkde: list, type=float</dt><dd><p>The (log of) kernel density for each sample</p>
+</dd>
+<dt>reweight_lambda: float</dt><dd><p>reweighting factor</p>
+</dd>
+<dt>n_sparse: int</dt><dd><p>number of samples to select</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>sbs: list, type=int</dt><dd><p>A list of selected samples</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -323,18 +343,23 @@ n_sparse: int, number of samples to select</p>
 <dt id="asaplib.compressor.sparsifier.Sparsifier.sparsify">
 <code class="sig-name descname">sparsify</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">desc_or_ntotal</span></em>, <em class="sig-param"><span class="n">n_or_ratio</span></em>, <em class="sig-param"><span class="n">sparse_param</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/compressor/sparsifier.html#Sparsifier.sparsify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.compressor.sparsifier.Sparsifier.sparsify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function handing the sparsification of data
-:param desc_or_ntotal: or simply the total number of samples
-:type desc_or_ntotal: Either a design matrix [n_sample, n_desc],
-:param n_or_ratio:
-:type n_or_ratio: Either the number or the fraction of sparsified points
-:param sparse_param:
-:type sparse_param: additional parameter that may be needed for the specific sparsifier used</p>
+:param desc_or_ntotal: Either a design matrix [n_sample, n_desc],</p>
+<blockquote>
+<div><p>or simply the total number of samples</p>
+</div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>sbs</strong></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_or_ratio</strong> (<em>int</em><em> or </em><em>float</em>) – Either the number or the fraction of sparsified points</p></li>
+<li><p><strong>sparse_param</strong> (<em>int</em>) – additional parameter that may be needed for the specific sparsifier used</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>a list of the indexes for the sparsified points</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>sbs</strong> (<em>list</em>)</p></li>
+<li><p><em>a list of the indexes for the sparsified points</em></p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -437,11 +462,12 @@ train/test set.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>xmin</strong> (<em>lower bound in original space</em>) – </p></li>
-<li><p><strong>xmax</strong> (<em>upper bound in original space</em>) – </p></li>
-<li><p><strong>n</strong> (<em>integer giving the number of spaces</em><em> (</em><em>default is 5</em><em>)</em>) – </p></li>
-<li><p><strong>Returns</strong> (<em>numpy array of n evenly spaced points in log space</em>) – </p></li>
+<li><p><strong>xmin</strong> (<em>float</em>) – lower bound in original space</p></li>
+<li><p><strong>xmax</strong> (<em>float</em>) – upper bound in original space</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – integer giving the number of spaces (default is 5)</p></li>
+<li><p><strong>Returns</strong> – </p></li>
 <li><p><strong>-------</strong> – </p></li>
+<li><p><strong>X</strong> (<em>np.array</em>) – list of n evenly spaced points in log space</p></li>
 </ul>
 </dd>
 </dl>
@@ -453,16 +479,16 @@ train/test set.</p></li>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>,</em><em>n_desc</em><em>]</em><em>, </em><em>kernel matrix</em>) – </p></li>
-<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>]</em><em>, </em><em>labels</em>) – </p></li>
-<li><p><strong>r</strong> (<em>float</em><em>, </em><em>test ratio</em>) – </p></li>
+<li><p><strong>X</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>,</em><em>n_desc</em><em>]</em>) – kernel matrix</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>]</em>) – labels</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – test ratio</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>X_train, X_test</strong> (<em>train/test kernel matrix</em>)</p></li>
-<li><p><strong>y_train, y_test</strong> (<em>train/test labels</em>)</p></li>
-<li><p><strong>train_list, test_list</strong> (<em>train/test indexes</em>)</p></li>
+<li><p><strong>X_train, X_test</strong> (<em>np.matrix</em>) – train/test kernel matrix</p></li>
+<li><p><strong>y_train, y_test</strong> (<em>np.array</em>) – train/test labels</p></li>
+<li><p><strong>train_list, test_list</strong> (<em>list</em>) – train/test indexes</p></li>
 </ul>
 </p>
 </dd>
@@ -476,11 +502,12 @@ train/test set.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sample</strong> (<em>integer giving the number of samples</em>) – </p></li>
-<li><p><strong>r</strong> (<em>float</em><em>, </em><em>test ratio</em>) – </p></li>
+<li><p><strong>n_sample</strong> (<em>int</em>) – giving the number of samples</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – test ratio</p></li>
 <li><p><strong>Returns</strong> – </p></li>
 <li><p><strong>-------</strong> – </p></li>
-<li><p><strong>test_list</strong> (<em>train_list</em><em>,</em>) – </p></li>
+<li><p><strong>train_list</strong> (<em>list</em>) – train indexes</p></li>
+<li><p><strong>test_list</strong> (<em>list</em>) – test indexes</p></li>
 </ul>
 </dd>
 </dl>

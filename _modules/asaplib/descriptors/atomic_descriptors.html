@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -151,9 +155,12 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Methods and functions to compute atomic desciptors</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="kn">from</span> <span class="nn">..io</span> <span class="kn">import</span> <span class="n">NpEncoder</span>
+
 
 <div class="viewcode-block" id="Atomic_Descriptors"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptors">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptors</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec_dict</span><span class="o">=</span><span class="p">{}):</span>
@@ -221,7 +228,7 @@
         <span class="k">if</span> <span class="n">desc_spec</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FCHL19&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Atomic_Descriptor_FCHL19</span><span class="p">(</span><span class="n">desc_spec</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span> 
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 <div class="viewcode-block" id="Atomic_Descriptors.compute"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptors.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -239,22 +246,28 @@
         <span class="n">atomic_desc_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">desc_spec_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">atomic_desc_dict</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">atomic_desc_dict</span><span class="p">[</span><span class="n">element</span><span class="p">][</span><span class="s1">&#39;acronym&#39;</span><span class="p">],</span> <span class="n">atomic_desc_dict</span><span class="p">[</span><span class="n">element</span><span class="p">][</span><span class="s1">&#39;atomic_descriptors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engines</span><span class="p">[</span><span class="n">element</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="n">atomic_desc_dict</span><span class="p">[</span><span class="n">element</span><span class="p">][</span><span class="s1">&#39;acronym&#39;</span><span class="p">],</span> <span class="n">atomic_desc_dict</span><span class="p">[</span><span class="n">element</span><span class="p">][</span><span class="s1">&#39;atomic_descriptors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engines</span><span class="p">[</span>
+                <span class="n">element</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">atomic_desc_dict</span></div></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_Base"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_Base">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_Base</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_atomic</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">pass</span>
+
 <div class="viewcode-block" id="Atomic_Descriptor_Base.is_atomic"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_Base.is_atomic">[docs]</a>    <span class="k">def</span> <span class="nf">is_atomic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_atomic</span></div>
+
 <div class="viewcode-block" id="Atomic_Descriptor_Base.get_acronym"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_Base.get_acronym">[docs]</a>    <span class="k">def</span> <span class="nf">get_acronym</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># we use an acronym for each descriptor, so it&#39;s easy to find it and refer to it</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span></div>
+
 <div class="viewcode-block" id="Atomic_Descriptor_Base.create"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_Base.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
         <span class="c1"># notice that we return the acronym here!!!</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span><span class="p">,</span> <span class="p">[]</span></div></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_SOAP"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_SOAP">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_SOAP</span><span class="p">(</span><span class="n">Atomic_Descriptor_Base</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
@@ -293,10 +306,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">periodic</span> <span class="o">=</span> <span class="kc">True</span>
 
-
         <span class="bp">self</span><span class="o">.</span><span class="n">soap</span> <span class="o">=</span> <span class="n">SOAP</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">nmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">lmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">,</span>
-                                         <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">,</span> <span class="n">crossover</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">crossover</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
-                                         <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">)</span>
+                         <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">rbf</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rbf</span><span class="p">,</span> <span class="n">crossover</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">crossover</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span>
+                         <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using SOAP Descriptors ...&quot;</span><span class="p">)</span>
 
@@ -331,10 +343,10 @@
         <span class="kn">from</span> <span class="nn">dscribe.descriptors</span> <span class="kn">import</span> <span class="n">ACSF</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span> <span class="o">=</span> <span class="p">{</span>
-                 <span class="s1">&#39;g2_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="s1">&#39;g3_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="s1">&#39;g4_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="s1">&#39;g5_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+            <span class="s1">&#39;g2_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;g3_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;g4_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;g5_params&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 
         <span class="c1"># required</span>
         <span class="k">try</span><span class="p">:</span>
@@ -351,12 +363,12 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">acsf</span> <span class="o">=</span> <span class="n">ACSF</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">,</span> <span class="n">sparse</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acsf</span> <span class="o">=</span> <span class="n">ACSF</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using ACSF Descriptors ...&quot;</span><span class="p">)</span>
 
         <span class="c1"># make an acronym</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;ACSF-c&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;ACSF-c&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g2_params&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">+=</span> <span class="s2">&quot;-g2-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g2_params&#39;</span><span class="p">]))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g3_params&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">+=</span> <span class="s2">&quot;-g3-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g3_params&#39;</span><span class="p">]))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g4_params&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">+=</span> <span class="s2">&quot;-g4-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">acsf_dict</span><span class="p">[</span><span class="s1">&#39;g4_params&#39;</span><span class="p">]))</span>
@@ -365,6 +377,7 @@
 <div class="viewcode-block" id="Atomic_Descriptor_ACSF.create"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_ACSF.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
         <span class="c1"># notice that we return the acronym here!!!</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">acsf</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_LMBTR"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_LMBTR">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_LMBTR</span><span class="p">(</span><span class="n">Atomic_Descriptor_Base</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
@@ -423,12 +436,12 @@
         <span class="k">if</span> <span class="s1">&#39;normalization&#39;</span> <span class="ow">in</span> <span class="n">desc_spec</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="n">desc_spec</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span>  <span class="kc">None</span> <span class="c1"># or &quot;l2_each&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># or &quot;l2_each&quot;</span>
 
         <span class="k">if</span> <span class="s1">&#39;normalize_gaussians&#39;</span> <span class="ow">in</span> <span class="n">desc_spec</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span> <span class="o">=</span> <span class="n">desc_spec</span><span class="p">[</span><span class="s1">&#39;normalize_gaussians&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span> <span class="o">=</span> <span class="s2">&quot;True&quot;</span> <span class="c1"># or False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span> <span class="o">=</span> <span class="s2">&quot;True&quot;</span>  <span class="c1"># or False</span>
 
         <span class="k">if</span> <span class="s1">&#39;periodic&#39;</span> <span class="ow">in</span> <span class="n">desc_spec</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">periodic</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">desc_spec</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">])</span>
@@ -438,6 +451,7 @@
 <div class="viewcode-block" id="Atomic_Descriptor_LMBTR.create"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_LMBTR.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
         <span class="c1"># notice that we return the acronym here!!!</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbtr</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_LMBTR_K2"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_LMBTR_K2">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_LMBTR_K2</span><span class="p">(</span><span class="n">Atomic_Descriptor_LMBTR</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
@@ -455,13 +469,15 @@
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough information to intialize the `Atomic_Descriptor_LMBTR` object&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">lmbtr</span> <span class="o">=</span> <span class="n">LMBTR</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize_gaussians</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span><span class="p">,</span>
-                            <span class="n">k2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lmbtr</span> <span class="o">=</span> <span class="n">LMBTR</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">normalize_gaussians</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span><span class="p">,</span>
+                           <span class="n">k2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k2</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using LMBTR-K2 Descriptors ...&quot;</span><span class="p">)</span>
 
         <span class="c1"># make an acronym</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;LMBTR-K2&quot;</span> <span class="c1"># perhaps add more info here</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;LMBTR-K2&quot;</span>  <span class="c1"># perhaps add more info here</span></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_LMBTR_K3"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_LMBTR_K3">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_LMBTR_K3</span><span class="p">(</span><span class="n">Atomic_Descriptor_LMBTR</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
@@ -479,13 +495,15 @@
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough information to intialize the `Atomic_Descriptor_LMBTR` object&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">lmbtr</span> <span class="o">=</span> <span class="n">LMBTR</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize_gaussians</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span><span class="p">,</span>
-                            <span class="n">k3</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lmbtr</span> <span class="o">=</span> <span class="n">LMBTR</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">periodic</span><span class="p">,</span> <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">normalize_gaussians</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">normalize_gaussians</span><span class="p">,</span>
+                           <span class="n">k3</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k3</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using LMBTR-K3 Descriptors ...&quot;</span><span class="p">)</span>
 
         <span class="c1"># make an acronym</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;LMBTR-K3&quot;</span> <span class="c1"># perhaps add more info here</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;LMBTR-K3&quot;</span>  <span class="c1"># perhaps add more info here</span></div>
+
 
 <div class="viewcode-block" id="Atomic_Descriptor_FCHL19"><a class="viewcode-back" href="../../../asaplib.descriptors.html#asaplib.descriptors.atomic_descriptors.Atomic_Descriptor_FCHL19">[docs]</a><span class="k">class</span> <span class="nc">Atomic_Descriptor_FCHL19</span><span class="p">(</span><span class="n">Atomic_Descriptor_Base</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -517,6 +535,7 @@
 <span class="sd">    :is_periodic: Boolean determining Whether the system is periodic.</span>
 <span class="sd">    :type Boolean:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc_spec</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">desc_spec</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">or</span> <span class="n">desc_spec</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;FCHL19&quot;</span><span class="p">:</span>
@@ -529,20 +548,19 @@
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: This FCHL19 atomic descriptor is untested, because I (Bingqing) cannot install QML!&quot;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-        <span class="kn">from</span> <span class="nn">qml.representations</span> <span class="kn">import</span> <span class="n">generate_fchl_acsf</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fchl_acsf_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nRs2&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
-                               <span class="s1">&#39;nRs3&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">fchl_acsf_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nRs2&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="s1">&#39;nRs3&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                                <span class="s1">&#39;nFourier&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                               <span class="s1">&#39;eta2&#39;</span><span class="p">:</span> <span class="kc">None</span> <span class="p">,</span> 
-                               <span class="s1">&#39;eta3&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+                               <span class="s1">&#39;eta2&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="s1">&#39;eta3&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                                <span class="s1">&#39;zeta&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                               <span class="s1">&#39;rcut&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+                               <span class="s1">&#39;rcut&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                                <span class="s1">&#39;acut&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                              <span class="s1">&#39;two_body_decay&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
-                              <span class="s1">&#39;three_body_decay&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                              <span class="s1">&#39;three_body_weight&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                              <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;gradients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+                               <span class="s1">&#39;two_body_decay&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="s1">&#39;three_body_decay&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="s1">&#39;three_body_weight&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;gradients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 
         <span class="c1"># required</span>
         <span class="k">try</span><span class="p">:</span>
@@ -558,24 +576,23 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using FCHL19 Descriptors ...&quot;</span><span class="p">)</span>
 
         <span class="c1"># make an acronym</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;FCHL19-c&quot;</span> <span class="c1"># add more stuff here</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acronym</span> <span class="o">=</span> <span class="s2">&quot;FCHL19-c&quot;</span>  <span class="c1"># add more stuff here</span>
 
     <span class="k">def</span> <span class="nf">_repr_wrapper</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span>
-                 <span class="n">nRs2</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">nRs3</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-                 <span class="n">nFourier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">eta2</span><span class="o">=</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">eta3</span><span class="o">=</span><span class="mf">2.7</span><span class="p">,</span>
-                 <span class="n">zeta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">acut</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
-                 <span class="n">two_body_decay</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">three_body_decay</span><span class="o">=</span><span class="mf">0.57</span><span class="p">,</span>
-                 <span class="n">three_body_weight</span><span class="o">=</span><span class="mf">13.4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
+                      <span class="n">nRs2</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">nRs3</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">nFourier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">eta2</span><span class="o">=</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">eta3</span><span class="o">=</span><span class="mf">2.7</span><span class="p">,</span>
+                      <span class="n">zeta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">acut</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+                      <span class="n">two_body_decay</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">three_body_decay</span><span class="o">=</span><span class="mf">0.57</span><span class="p">,</span>
+                      <span class="n">three_body_weight</span><span class="o">=</span><span class="mf">13.4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 
         <span class="n">nuclear_charges</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">get_atomic_numbers</span><span class="p">(),</span> <span class="n">frame</span><span class="o">.</span><span class="n">get_positions</span><span class="p">()</span>
         <span class="n">rep</span> <span class="o">=</span> <span class="n">generate_fchl_acsf</span><span class="p">(</span><span class="n">nuclear_charges</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span>
-                             <span class="n">nRs2</span><span class="o">=</span><span class="n">nRs2</span><span class="p">,</span> <span class="n">nRs3</span><span class="o">=</span><span class="n">nRs3</span><span class="p">,</span> <span class="n">nFourier</span><span class="o">=</span><span class="n">nFourier</span><span class="p">,</span>
-                             <span class="n">eta2</span><span class="o">=</span><span class="n">eta2</span><span class="p">,</span> <span class="n">eta3</span><span class="o">=</span><span class="n">eta3</span><span class="p">,</span> <span class="n">zeta</span><span class="o">=</span><span class="n">zeta</span><span class="p">,</span>
-                             <span class="n">rcut</span><span class="o">=</span><span class="n">rcut</span><span class="p">,</span> <span class="n">acut</span><span class="o">=</span><span class="n">acut</span><span class="p">,</span>
-                             <span class="n">two_body_decay</span><span class="o">=</span><span class="n">two_body_decay</span><span class="p">,</span> <span class="n">three_body_decay</span><span class="o">=</span><span class="n">three_body_decay</span><span class="p">,</span>
-                             <span class="n">three_body_weight</span><span class="o">=</span><span class="n">three_body_weight</span><span class="p">,</span>
-                             <span class="n">pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gradients</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                 <span class="n">nRs2</span><span class="o">=</span><span class="n">nRs2</span><span class="p">,</span> <span class="n">nRs3</span><span class="o">=</span><span class="n">nRs3</span><span class="p">,</span> <span class="n">nFourier</span><span class="o">=</span><span class="n">nFourier</span><span class="p">,</span>
+                                 <span class="n">eta2</span><span class="o">=</span><span class="n">eta2</span><span class="p">,</span> <span class="n">eta3</span><span class="o">=</span><span class="n">eta3</span><span class="p">,</span> <span class="n">zeta</span><span class="o">=</span><span class="n">zeta</span><span class="p">,</span>
+                                 <span class="n">rcut</span><span class="o">=</span><span class="n">rcut</span><span class="p">,</span> <span class="n">acut</span><span class="o">=</span><span class="n">acut</span><span class="p">,</span>
+                                 <span class="n">two_body_decay</span><span class="o">=</span><span class="n">two_body_decay</span><span class="p">,</span> <span class="n">three_body_decay</span><span class="o">=</span><span class="n">three_body_decay</span><span class="p">,</span>
+                                 <span class="n">three_body_weight</span><span class="o">=</span><span class="n">three_body_weight</span><span class="p">,</span>
+                                 <span class="n">pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gradients</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">rep_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rep</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">),</span> <span class="n">rep</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nuclear_charges</span><span class="p">):</span>

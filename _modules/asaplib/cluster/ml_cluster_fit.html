@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -270,25 +274,30 @@
 
 <span class="sd">    https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf</span>
 
-<span class="sd">    $$ \rho_i\,=\,\sum_j{\chi(d_{ij}-d_{cut})}$$</span>
-<span class="sd">    $$ \delta_i\,=\,\min_{j:\rho_j&gt;\rho_i}(d_{ij})$$</span>
+<span class="sd">    :math: \rho_i\,=\,\sum_j{\chi(d_{ij}-d_{cut})}</span>
+<span class="sd">    :math: \delta_i\,=\,\min_{j:\rho_j&gt;\rho_i}(d_{ij})</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distances</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dens_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        distances: numpy array of distances between data points and their neighbours of shape (Nele, n_neigh_comp)</span>
+<span class="sd">        distances: numpy array </span>
+<span class="sd">        array of distances between data points and their neighbours of shape (Nele, n_neigh_comp)</span>
 <span class="sd">        where Nele is the number of data points and n_neigh_comp is the number of neighbours to consider.</span>
 
-<span class="sd">        indices: numpy array of shape (Nele, n_neigh_comp) where row i gives the indices of the neighbours for data point i</span>
+<span class="sd">        indices: numpy array </span>
+<span class="sd">               array of shape (Nele, n_neigh_comp) where row i gives the indices of the neighbours for data point i</span>
 
-<span class="sd">        dens_type: The type of density to compute. Can be &#39;exp&#39; (exponential) or None (linear)</span>
+<span class="sd">        dens_type: str</span>
+<span class="sd">                 The type of density to compute. Can be &#39;exp&#39; (exponential) or None (linear)</span>
 
-<span class="sd">        dc: float giving the cutoff distance beyond which data points don&#39;t contribute to the local density computation</span>
+<span class="sd">        dc: float </span>
+<span class="sd">        giving the cutoff distance beyond which data points don&#39;t contribute to the local density computation</span>
 <span class="sd">        of another datapoint.</span>
 
-<span class="sd">        percent: Criterion for choosing dc, int from 0-100, typically chosen such that the average number of neighbours</span>
+<span class="sd">        percent: int</span>
+<span class="sd">        Criterion for choosing dc, int from 0-100, typically chosen such that the average number of neighbours</span>
 <span class="sd">        is 1-2% of the total number of points in the dataset. Default is 2%.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -338,12 +347,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        data: The data array of shape (Nele, proj_dim) where N is the number of data points and proj_dim is the number of</span>
+<span class="sd">        data: np.matrix </span>
+<span class="sd">        The data array of shape (Nele, proj_dim) where N is the number of data points and proj_dim is the number of</span>
 <span class="sd">        projected components of the kernel matrix.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        self.dc, the cutoff distance</span>
+<span class="sd">        self.dc: float</span>
+<span class="sd">             the cutoff distance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">Nele</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -541,22 +552,24 @@
 <span class="sd">    Clustering by fast search and find of density peaks</span>
 <span class="sd">    https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf</span>
 
-<span class="sd">    $$ \rho_i\,=\,\sum_j{\chi(d_{ij}-d_{cut})}$$ i.e. the local density of data point x_i</span>
-<span class="sd">    $$ \delta_i\,=\,\min_{j:\rho_j&gt;\rho_i}(d_{ij})$$ i.e. the minimum distance to a neighbour with higher density</span>
+<span class="sd">    :math: \\rho_i\,=\,\\sum_j{\\chi(d_{ij}-d_{cut})}</span>
+<span class="sd">         i.e. the local density of data point x_i</span>
+<span class="sd">    :math: \\delta_i\,=\,\\min_{j:\\rho_j&gt;\\rho_i}(d_{ij})</span>
+<span class="sd">         i.e. the minimum distance to a neighbour with higher density</span>
+
+
+<span class="sd">    A summary of laio clustering algorithm:</span>
+<span class="sd">    1. First do a kernel density estimation (rho_i) for each data point i</span>
+<span class="sd">    2. For each data point i, compute the distance (delta_i) between i and j,</span>
+<span class="sd">       j is the closet data point that has a density higher then i, i.e. rho(j) &gt; rho(i).</span>
+<span class="sd">    3. Plot the decision graph, which is a scatter plot of (rho_i, delta_i)</span>
+<span class="sd">    4. Select cluster centers ({cl}), which are the outliers in the decision graph that fulfills:</span>
+<span class="sd">       i) rho({cl}) &gt; rhomin</span>
+<span class="sd">       ii) delta({cl}) &gt; delta_min</span>
+<span class="sd">       one needs to set the two parameters rhomin and delta_min.</span>
+<span class="sd">    5. After the cluster centers are determined, data points are assigned to the nearest cluster center.</span>
+<span class="sd"> one needs to set two parameters:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-<span class="c1">#    A summary of laio clustering algorithm:</span>
-<span class="c1">#    1. First do a kernel density estimation (rho_i) for each data point i</span>
-<span class="c1">#    2. For each data point i, compute the distance (delta_i) between i and j,</span>
-<span class="c1">#       j is the closet data point that has a density higher then i, i.e. rho(j) &gt; rho(i).</span>
-<span class="c1">#    3. Plot the decision graph, which is a scatter plot of (rho_i, delta_i)</span>
-<span class="c1">#    4. Select cluster centers ({cl}), which are the outliers in the decision graph that fulfills:</span>
-<span class="c1">#       i) rho({cl}) &gt; rhomin</span>
-<span class="c1">#       ii) delta({cl}) &gt; delta_min</span>
-<span class="c1">#       one needs to set the two parameters rhomin and delta_min.</span>
-<span class="c1">#    5. After the cluster centers are determined, data points are assigned to the nearest cluster center.</span>
-<span class="c1"># one needs to set two parameters:</span>
-
     <span class="n">_pairwise</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deltamin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rhomin</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>

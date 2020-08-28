@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -149,7 +153,9 @@
             
   <h1>Source code for asaplib.cli.cmd_cli_options</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">click</span>
+
 <span class="kn">from</span> <span class="nn">asaplib.io</span> <span class="kn">import</span> <span class="n">ConvertStrToList</span>
+
 
 <div class="viewcode-block" id="state_input_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.state_input_options">[docs]</a><span class="k">def</span> <span class="nf">state_input_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for I/O files&quot;&quot;&quot;</span>
@@ -157,16 +163,18 @@
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The state file that includes a dictionary-like specifications of descriptors to use.&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="file_input_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.file_input_options">[docs]</a><span class="k">def</span> <span class="nf">file_input_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for I/O files&quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--fxyz&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> 
-                     <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--fxyz&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Input file that contains XYZ coordinates.</span><span class="se">\</span>
 <span class="s1">                           See a list of possible input formats:</span><span class="se">\</span>
 <span class="s1">                          https://wiki.fysik.dtu.dk/ase/ase/io/io.html</span><span class="se">\</span>
 <span class="s1">                          If a wildcard * is used, all files matching the pattern is read.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="file_input_format_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.file_input_format_options">[docs]</a><span class="k">def</span> <span class="nf">file_input_format_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for I/O files&quot;&quot;&quot;</span>
@@ -177,6 +185,7 @@
                      <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="file_output_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.file_output_options">[docs]</a><span class="k">def</span> <span class="nf">file_output_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for I/O files&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;-p&#39;</span><span class="p">,</span>
@@ -184,11 +193,13 @@
                      <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="dm_input_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.dm_input_options">[docs]</a><span class="k">def</span> <span class="nf">dm_input_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;common options for reading a design matrices, used for map, fit, kde, clustering, etc.&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--design_matrix&#39;</span><span class="p">,</span> <span class="s1">&#39;-dm&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">ConvertStrToList</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Location of descriptor matrix file or name of the tags in ase xyz file</span><span class="se">\</span>
-<span class="s1">                           the type is a list  </span><span class="se">\&#39;</span><span class="s1">[dm1, dm2]</span><span class="se">\&#39;</span><span class="s1">, as we can put together simutanously several design matrix.&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+<span class="s1">                           the type is a list  </span><span class="se">\&#39;</span><span class="s1">[dm1, dm2]</span><span class="se">\&#39;</span><span class="s1">, as we can put together simutanously several design matrix.&#39;</span><span class="p">)(</span>
+        <span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--use_atomic_descriptors&#39;</span><span class="p">,</span> <span class="s1">&#39;--use_atomic&#39;</span><span class="p">,</span> <span class="s1">&#39;-ua&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Use atomic descriptors instead of global ones.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
@@ -198,11 +209,13 @@
                      <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="km_input_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.km_input_options">[docs]</a><span class="k">def</span> <span class="nf">km_input_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;common options for reading a kernel matrices, can be used for map, fit, kde, clustering, etc.&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--kernel_matrix&#39;</span><span class="p">,</span> <span class="s1">&#39;-km&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Location of a kernel matrix file&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="output_setup_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.output_setup_options">[docs]</a><span class="k">def</span> <span class="nf">output_setup_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for output results from clustering/KDE analysis&quot;&quot;&quot;</span>
@@ -214,12 +227,14 @@
                      <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="desc_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.desc_options">[docs]</a><span class="k">def</span> <span class="nf">desc_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for computing descriptors&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--tag&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Tag for the descriptors.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="s1">&#39;cmd-desc&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="para_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.para_options">[docs]</a><span class="k">def</span> <span class="nf">para_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for parallellization&quot;&quot;&quot;</span>
@@ -228,16 +243,17 @@
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="atomic_to_global_desc_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.atomic_to_global_desc_options">[docs]</a><span class="k">def</span> <span class="nf">atomic_to_global_desc_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for global descriptors constructed based on atomic fingerprints &quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--reducer_type&#39;</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;type of operations to get global descriptors from the atomic soap vectors, e.g. </span><span class="se">\</span>
 <span class="s1">                          [average], [sum], [moment_avg], [moment_sum].&#39;</span><span class="p">,</span>
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--zeta&#39;</span><span class="p">,</span> <span class="s1">&#39;-z&#39;</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--zeta&#39;</span><span class="p">,</span> <span class="s1">&#39;-z&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Moments to take when converting atomic descriptors to global ones.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--element_wise&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--element_wise&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;element-wise operation to get global descriptors from the atomic soap vectors&#39;</span><span class="p">,</span>
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--peratom&#39;</span><span class="p">,</span> <span class="s1">&#39;-pa&#39;</span><span class="p">,</span>
@@ -245,25 +261,27 @@
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="map_setup_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.map_setup_options">[docs]</a><span class="k">def</span> <span class="nf">map_setup_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for making 2D maps of the data set&quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--peratom&#39;</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--peratom&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Save the per-atom projection.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--adjusttext/--no-adjusttext&#39;</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--adjusttext/--no-adjusttext&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Adjust the annotation texts so they do not overlap.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--annotate&#39;</span><span class="p">,</span> <span class="s1">&#39;-a&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Location of tags to annotate the samples.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--aspect_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;-ar&#39;</span><span class="p">,</span>
-                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Aspect ratio of the plot&#39;</span><span class="p">,</span>
-                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Aspect ratio of the plot&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--style&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span>
-                     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;default&#39;</span><span class="p">,</span><span class="s1">&#39;journal&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
-                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Style of the plot.&#39;</span><span class="p">,</span> 
+                     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;journal&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Style of the plot.&#39;</span><span class="p">,</span>
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="map_io_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.map_io_options">[docs]</a><span class="k">def</span> <span class="nf">map_io_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for making 2D maps of the data set&quot;&quot;&quot;</span>
@@ -276,6 +294,7 @@
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--extra-properties&#39;</span><span class="p">,</span> <span class="s1">&#39;-ep&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Additional properties to be read for each frmae in CSV format.&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="color_setup_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.color_setup_options">[docs]</a><span class="k">def</span> <span class="nf">color_setup_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for handing color scales&quot;&quot;&quot;</span>
@@ -300,30 +319,32 @@
                      <span class="n">default</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="d_reduce_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.d_reduce_options">[docs]</a><span class="k">def</span> <span class="nf">d_reduce_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for dimensionality reduction&quot;&quot;&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--axes&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]),</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Plot the projection along which projection axes.&#39;</span><span class="p">,</span>
-                     <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])(</span><span class="n">f</span><span class="p">)</span>
+                     <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--dimension&#39;</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of the dimensions to keep in the output XYZ file.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--scale/--no-scale&#39;</span><span class="p">,</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--scale/--no-scale&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Standard scaling of the coordinates.&#39;</span><span class="p">,</span>
                      <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="fit_setup_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.fit_setup_options">[docs]</a><span class="k">def</span> <span class="nf">fit_setup_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for making 2D maps of the data set&quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--lc_points&#39;</span><span class="p">,</span> <span class="s1">&#39;-lcp&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the number of sub-samples to take when compute the learning curve&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--learning_curve&#39;</span><span class="p">,</span> <span class="s1">&#39;-lc&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the number of points on the learning curve, &lt;= 1 means no learning curve&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--test_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Test ratio.&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--lc_points&#39;</span><span class="p">,</span> <span class="s1">&#39;-lcp&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the number of sub-samples to take when compute the learning curve&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--learning_curve&#39;</span><span class="p">,</span> <span class="s1">&#39;-lc&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;the number of points on the learning curve, &lt;= 1 means no learning curve&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--test_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span> <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Test ratio.&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--normalized_by_size&#39;</span><span class="p">,</span> <span class="s1">&#39;-nbs&#39;</span><span class="p">,</span>
                      <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Normalize y by the number of atoms in each frame.&#39;</span><span class="p">,</span>
                      <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
@@ -332,26 +353,28 @@
                      <span class="n">default</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 
+
 <div class="viewcode-block" id="kernel_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.kernel_options">[docs]</a><span class="k">def</span> <span class="nf">kernel_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for compute kernel functions&quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--kernel_parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;-kp&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Parameter used in the kernel function.&#39;</span><span class="p">,</span> 
-              <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--kernel_parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;-kp&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Parameter used in the kernel function.&#39;</span><span class="p">,</span>
+                     <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--kernel&#39;</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span>
-              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Kernel function for converting design matrix to kernel matrix.&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Kernel function for converting design matrix to kernel matrix.&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
+
 
 <div class="viewcode-block" id="sparsification_options"><a class="viewcode-back" href="../../../asaplib.cli.html#asaplib.cli.cmd_cli_options.sparsification_options">[docs]</a><span class="k">def</span> <span class="nf">sparsification_options</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create common options for sparsification&quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--n_sparse&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of the representative samples, set negative if using no sparsification&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--n_sparse&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of the representative samples, set negative if using no sparsification&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--sparse_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span>
-              <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="s1">&#39;cur&#39;</span><span class="p">,</span> <span class="s1">&#39;fps&#39;</span><span class="p">,</span> <span class="s1">&#39;sequential&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
-              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Sparsification method to use.&#39;</span><span class="p">,</span> 
-              <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;fps&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="s1">&#39;cur&#39;</span><span class="p">,</span> <span class="s1">&#39;fps&#39;</span><span class="p">,</span> <span class="s1">&#39;sequential&#39;</span><span class="p">],</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Sparsification method to use.&#39;</span><span class="p">,</span>
+                     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;fps&#39;</span><span class="p">)(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">f</span></div>
 </pre></div>
 

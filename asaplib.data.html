@@ -85,7 +85,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules in ASAP</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules of asaplib</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="asaplib.html">asaplib package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="asaplib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="asaplib.cli.html">asaplib.cli package</a></li>
@@ -106,7 +110,6 @@
 <li class="toctree-l3"><a class="reference internal" href="asaplib.html#module-asaplib">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +158,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Modules in ASAP</a> &raquo;</li>
+          <li><a href="modules.html">modules of asaplib</a> &raquo;</li>
         
           <li><a href="asaplib.html">asaplib package</a> &raquo;</li>
         
@@ -190,6 +193,22 @@
 <dt id="asaplib.data.design_matrix.Design_Matrix">
 <em class="property">class </em><code class="sig-prename descclassname">asaplib.data.design_matrix.</code><code class="sig-name descname">Design_Matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">whiten</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">test_ratio</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">42</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">tags</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/design_matrix.html#Design_Matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.design_matrix.Design_Matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>extended design matrix class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>,</em><em>n_desc</em><em>]</em>) – </p></li>
+<li><p><strong>points.</strong> (<em>Input</em>) – </p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>]</em>) – </p></li>
+<li><p><strong>for every point</strong> (<em>label</em>) – </p></li>
+<li><p><strong>testratio</strong> (<em>float</em><em>, </em><em>ratio of the test fraction</em>) – </p></li>
+<li><p><strong>z</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>]</em>) – </p></li>
+<li><p><strong>label for every point</strong> (<em>additional</em>) – </p></li>
+<li><p><strong>tags</strong> (<em>array-like</em><em>, </em><em>strings</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>]</em>) – </p></li>
+<li><p><strong>tags for each data point</strong> (<em>additional</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="asaplib.data.design_matrix.Design_Matrix.compute_fit">
 <code class="sig-name descname">compute_fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">learner</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">store_results</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">plot</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/design_matrix.html#Design_Matrix.compute_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.design_matrix.Design_Matrix.compute_fit" title="Permalink to this definition">¶</a></dt>
@@ -197,8 +216,9 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>learner</strong> (<em>object. a learner object</em><em>, </em><em>e.g. RidgeRegression</em>) – needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</p></li>
-<li><p><strong>tag</strong> (<em>str. The name of this learner</em>) – </p></li>
+<li><p><strong>learner</strong> (<em>a learner object</em>) – e.g. RidgeRegression
+needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</p></li>
+<li><p><strong>tag</strong> (<em>str</em>) – The name of this learner</p></li>
 </ul>
 </dd>
 </dl>
@@ -211,10 +231,11 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lc_points</strong> (<em>int</em><em>, </em><em>the number of points on the learning curve</em>) – </p></li>
-<li><p><strong>lc_repeats</strong> (<em>the number of sub-samples to take when compute the learning curve</em>) – </p></li>
-<li><p><strong>learner</strong> (<em>object. a learner object</em><em>, </em><em>e.g. RidgeRegression</em>) – needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</p></li>
-<li><p><strong>tag</strong> (<em>str. The name of this learner</em>) – </p></li>
+<li><p><strong>lc_points</strong> (<em>int</em>) – the number of points on the learning curve</p></li>
+<li><p><strong>lc_repeats</strong> (<em>int</em>) – the number of sub-samples to take when compute the learning curve</p></li>
+<li><p><strong>learner</strong> (<em>a learner object</em>) – e.g. RidgeRegression
+needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</p></li>
+<li><p><strong>tag</strong> (<em>str</em>) – The name of this learner</p></li>
 </ul>
 </dd>
 </dl>
@@ -228,7 +249,8 @@
 <dl class="py method">
 <dt id="asaplib.data.design_matrix.Design_Matrix.save_state">
 <code class="sig-name descname">save_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'yaml'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/design_matrix.html#Design_Matrix.save_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.design_matrix.Design_Matrix.save_state" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>output json or yaml file</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="asaplib.data.design_matrix.Design_Matrix.sparsify">
@@ -237,9 +259,10 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_sparse</strong> (<em>number of representative points</em>) – n_sparse == None means 5% of the data
+<li><p><strong>n_sparse</strong> (<em>int</em>) – number of representative points
+n_sparse == None means 5% of the data
 n_sparse &lt; 0 means no sparsification</p></li>
-<li><p><strong>sparse_mode</strong> (<em>str. Methods to use for sparsification</em><em> [</em><em>cur</em><em>]</em><em>, </em><em>[</em><em>fps</em><em>]</em><em>, </em><em>[</em><em>random</em><em>]</em>) – </p></li>
+<li><p><strong>sparse_mode</strong> (<em>str</em>) – Methods to use for sparsification [cur], [fps], [random]</p></li>
 </ul>
 </dd>
 </dl>
@@ -250,24 +273,39 @@ n_sparse &lt; 0 means no sparsification</p></li>
 </div>
 <div class="section" id="module-asaplib.data.xyz">
 <span id="asaplib-data-xyz-module"></span><h2>asaplib.data.xyz module<a class="headerlink" href="#module-asaplib.data.xyz" title="Permalink to this headline">¶</a></h2>
+<p>ASAPXYZ class for handing atomic coordinate input and compute/output</p>
 <dl class="py class">
 <dt id="asaplib.data.xyz.ASAPXYZ">
 <em class="property">class </em><code class="sig-prename descclassname">asaplib.data.xyz.</code><code class="sig-name descname">ASAPXYZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fxyz</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stride</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">periodic</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fileformat</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/xyz.html#ASAPXYZ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.xyz.ASAPXYZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>extended xyz class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fxyz</strong> (<em>string_like</em>) – the path to the extended xyz file</p></li>
+<li><p><strong>fmat</strong> (<em>string_like</em>) – the name of the descriptors in the extended xyz file</p></li>
+<li><p><strong>use_atomic_desc</strong> (<em>bool</em>) – return the descriptors for each atom, read from the xyz file</p></li>
+<li><p><strong>stride</strong> (<em>int</em>) – the stride when reading the xyz file</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="asaplib.data.xyz.ASAPXYZ.compute_atomic_descriptors">
 <code class="sig-name descname">compute_atomic_descriptors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">desc_spec_dict</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">sbs</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_process</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/xyz.html#ASAPXYZ.compute_atomic_descriptors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.xyz.ASAPXYZ.compute_atomic_descriptors" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute the atomic descriptors for selected frames
-:param desc_spec:
-:type desc_spec: a list of dictionaries, contrains infos on the descriptors to use
+:param desc_spec: contrains infos on the descriptors to use
+:type desc_spec: a list of dictionaries
 :param e.g.:
-:param atomic_desc_dict = {:
-:param “firstsoap”:
-:param {“type”:
-:type {“type”: ‘SOAP’,”species”: [1, 6, 7, 8], “cutoff”: 2.0, “atom_gaussian_width”: 0.2, “n”: 4, “l”: 4}
-:param }:
-:param sbs:
-:type sbs: array, integer</p>
+:param .. code-block:: python: atomic_desc_dict = {</p>
+<blockquote>
+<div><p>“firstsoap”:
+{“type”: ‘SOAP’,”species”: [1, 6, 7, 8], “cutoff”: 2.0, “atom_gaussian_width”: 0.2, “n”: 4, “l”: 4}}</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – the index of the subset of structures to compute</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -277,27 +315,46 @@ n_sparse &lt; 0 means no sparsification</p></li>
 :param desc_spec_dict:
 :type desc_spec_dict: dictionaries that specify which global descriptor to use.
 :param e.g.:
-:param {‘global_desc1’:
-:param {“type”:
-:type {“type”: ‘CM’}}
-:param e.g.:
-:param {‘global_desc2’:
-:type {‘global_desc2’: {‘atomic_descriptor’: atomic_desc_dict, ‘reducer_function’: reducer_dict}}
-:param and:
-:param atomic_desc_dict = {:
-:param “firstsoap”:
-:param {“type”:
-:type {“type”: ‘SOAP’,”species”: [1, 6, 7, 8], “cutoff”: 2.0, “atom_gaussian_width”: 0.2, “n”: 4, “l”: 4}
-:param }:
-:param and:
-:param reducer_dict = {‘first_reducer’: ‘zeta’: zeta,</p>
+:param .. code-block:: python:</p>
 <blockquote>
-<div><p>‘species’: species,
+<div><dl class="simple">
+<dt>{‘global_desc1’:</dt><dd><p>{“type”: ‘CM’}}</p>
+</dd>
+</dl>
+<p># or</p>
+<dl>
+<dt>{‘global_desc2’:</dt><dd><dl>
+<dt>{‘atomic_descriptor’:</dt><dd><blockquote>
+<div><p>atomic_desc_dict,</p>
+</div></blockquote>
+<dl class="simple">
+<dt>‘reducer_function’:</dt><dd><p>reducer_dict</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}}</p>
+</dd>
+<dt>atomic_desc_dict = {</dt><dd><dl class="simple">
+<dt>“firstsoap”:</dt><dd><p>{“type”: ‘SOAP’,
+“species”: [1, 6, 7, 8],
+“cutoff”: 2.0,
+“atom_gaussian_width”: 0.2,
+“n”: 4,
+“l”: 4}}</p>
+</dd>
+</dl>
+</dd>
+<dt>reducer_dict = {‘first_reducer’:</dt><dd><p>{‘reducer_type’: reducer_type,
+‘zeta’: zeta,
+‘species’: species,
 ‘element_wise’: element_wise}}</p>
+</dd>
+</dl>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p>
+<dd class="field-odd"><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – list of the indexes of the subset</p>
 </dd>
 </dl>
 </dd></dl>
@@ -306,8 +363,8 @@ n_sparse &lt; 0 means no sparsification</p></li>
 <dt id="asaplib.data.xyz.ASAPXYZ.fetch_computed_descriptors">
 <code class="sig-name descname">fetch_computed_descriptors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">desc_dict_keys</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">sbs</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/xyz.html#ASAPXYZ.fetch_computed_descriptors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.xyz.ASAPXYZ.fetch_computed_descriptors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch the computed descriptors for selected frames
-:param desc_spec_keys:
-:type desc_spec_keys: a list (str-like) of keys for which computed descriptors to fetch.
+:param desc_spec_keys: for which computed descriptors to fetch.
+:type desc_spec_keys: a list (str-like) of keys
 :param sbs:
 :type sbs: array, integer</p>
 <dl class="field-list simple">
@@ -327,9 +384,13 @@ n_sparse &lt; 0 means no sparsification</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>desc_name_list</strong> (<em>a list of strings</em><em>, </em><em>the name of the .info</em><em>[</em><em>] </em><em>in the extended xyz file</em>) – </p></li>
-<li><p><strong>species_name</strong> (<em>int</em><em>, </em><em>the atomic number of the species selected.</em>) – Only the desciptors of atoms of the specified specied will be returned.
-species_name=None means all atoms are selected.</p></li>
+<li><p><strong>desc_name_list</strong> (<em>a list of strings</em>) – the name of the .info[] in the extended xyz file</p></li>
+<li><p><strong>species_name</strong> (<em>int</em>) – <dl class="simple">
+<dt>the atomic number of the species selected.</dt><dd><p>Only the desciptors of atoms of the specified specied will be returned.</p>
+</dd>
+</dl>
+<p>species_name=None means all atoms are selected.</p>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -348,10 +409,14 @@ species_name=None means all atoms are selected.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_key</strong> (<em>string_like</em><em>, </em><em>the name of the property in the extended xyz file</em>) – </p></li>
+<li><p><strong>y_key</strong> (<em>string_like</em>) – the name of the property in the extended xyz file</p></li>
 <li><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p></li>
-<li><p><strong>specie</strong> (<em>int</em><em>, </em><em>the atomic number of the species selected.</em>) – Only the properties of atoms of the specified specied will be returned.
-species_name=None means all atoms are selected.</p></li>
+<li><p><strong>specie</strong> (<em>int</em>) – <dl class="simple">
+<dt>the atomic number of the species selected.</dt><dd><p>Only the properties of atoms of the specified specied will be returned.
+species_name=None means all atoms are selected.</p>
+</dd>
+</dl>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -370,9 +435,10 @@ species_name=None means all atoms are selected.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>desc_name_list</strong> (<em>a list of strings</em><em>, </em><em>the name of the .info</em><em>[</em><em>] </em><em>in the extended xyz file</em>) – </p></li>
-<li><p><strong>use_atomic_desc</strong> (<em>bool</em><em>, </em><em>return the descriptors for each atom</em><em>, </em><em>read from the xyz file</em>) – </p></li>
-<li><p><strong>species_name</strong> (<em>int</em><em>, </em><em>the atomic number of the species selected.</em>) – Only the desciptors of atoms of the specified specied will be returned.
+<li><p><strong>desc_name_list</strong> (<em>a list of strings</em>) – the name of the .info[] in the extended xyz file</p></li>
+<li><p><strong>use_atomic_desc</strong> (<em>bool</em>) – return the descriptors for each atom, read from the xyz file</p></li>
+<li><p><strong>species_name</strong> (<em>int</em>) – the atomic number of the species selected.
+Only the desciptors of atoms of the specified specied will be returned.
 species_name=None means all atoms are selected.</p></li>
 </ul>
 </dd>
@@ -413,7 +479,7 @@ species_name=None means all atoms are selected.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_key</strong> (<em>string_like</em><em>, </em><em>the name of the property in the extended xyz file</em>) – </p></li>
+<li><p><strong>y_key</strong> (<em>string_like</em>) – the name of the property in the extended xyz file</p></li>
 <li><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p></li>
 </ul>
 </dd>
@@ -445,8 +511,9 @@ frames.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>(</em><em>str</em><em>) </em><em>Name of the CSV file.</em>) – </p></li>
-<li><p><strong>header</strong> (<em>Row number of the header. Defaults to use the first row unless explicit</em>) – names for the columns are given</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> (<em>int</em>) – Row number of the header. Defaults to use the first row unless explicit
+names for the columns are given</p></li>
 </ul>
 </dd>
 </dl>
@@ -529,7 +596,7 @@ frames.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – </p></li>
-<li><p><strong>desc_name</strong> (<em>str. Name of the properties/descriptors to write</em>) – </p></li>
+<li><p><strong>desc_name</strong> (<em>str</em>) – Name of the properties/descriptors to write</p></li>
 <li><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p></li>
 <li><p><strong>comment</strong> (<em>str</em>) – </p></li>
 </ul>
@@ -546,7 +613,7 @@ frames.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – </p></li>
 <li><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p></li>
-<li><p><strong>cutoff</strong> (<em>generate cutoff for atomic environments</em><em>, </em><em>set to None to disable atomic environments</em>) – </p></li>
+<li><p><strong>cutoff</strong> (<em>float</em>) – generate cutoff for atomic environments, set to None to disable atomic environments</p></li>
 </ul>
 </dd>
 </dl>
@@ -556,8 +623,8 @@ frames.</p>
 <dt id="asaplib.data.xyz.ASAPXYZ.write_computed_descriptors">
 <code class="sig-name descname">write_computed_descriptors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">desc_dict_keys</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">sbs</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">comment</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/data/xyz.html#ASAPXYZ.write_computed_descriptors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.data.xyz.ASAPXYZ.write_computed_descriptors" title="Permalink to this definition">¶</a></dt>
 <dd><p>write the computed descriptors for selected frames
-:param desc_spec_keys:
-:type desc_spec_keys: a list (str-like) of keys for which computed descriptors to fetch.
+:param desc_spec_keys: a list (str-like) of keys for which computed descriptors to fetch.
+:type desc_spec_keys: list
 :param sbs:
 :type sbs: array, integer</p>
 <dl class="field-list simple">
@@ -578,7 +645,7 @@ frames.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – </p></li>
-<li><p><strong>desc_name_list</strong> (<em>a list of str. Name of the properties/descriptors to write</em>) – </p></li>
+<li><p><strong>desc_name_list</strong> (<em>a list of str.</em>) – Name of the properties/descriptors to write</p></li>
 <li><p><strong>sbs</strong> (<em>array</em><em>, </em><em>integer</em>) – </p></li>
 <li><p><strong>comment</strong> (<em>str</em>) – </p></li>
 </ul>

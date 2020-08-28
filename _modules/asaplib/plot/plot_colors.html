@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -163,15 +167,23 @@
     <span class="sd">&quot;&quot;&quot; obtain the essential informations to define the colors of data points</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    fcolor: str, the name of the file or the tag in the xyz to define the colors</span>
+<span class="sd">    fcolor: str</span>
+<span class="sd">             the name of the file or the tag in the xyz to define the colors</span>
 <span class="sd">    asapxyz: ASAPXYZ object, (optional)</span>
-<span class="sd">    colorscol: int, (optional). if the color file has more than one column, which column to use</span>
-<span class="sd">    n_samples: int, (optional). The number of data points</span>
-<span class="sd">    peratom: bool, return atomic color</span>
-<span class="sd">    project_atomic: the samples are atomic descriptors</span>
-<span class="sd">    use_atomic_species: int, the atomic number of the selected species</span>
-<span class="sd">    color_from_zero: bool, set the min color to zero</span>
-<span class="sd">    extensive: bool, normalize the quatity by number of atoms</span>
+<span class="sd">    colorscol: int, (optional). </span>
+<span class="sd">              if the color file has more than one column, which column to use</span>
+<span class="sd">    n_samples: int, (optional). </span>
+<span class="sd">              The number of data points</span>
+<span class="sd">    peratom: bool</span>
+<span class="sd">              return atomic color</span>
+<span class="sd">    project_atomic: bool</span>
+<span class="sd">              the samples are atomic descriptors</span>
+<span class="sd">    use_atomic_species: int</span>
+<span class="sd">              the atomic number of the selected species</span>
+<span class="sd">    color_from_zero: bool</span>
+<span class="sd">              set the min color to zero</span>
+<span class="sd">    extensive: bool</span>
+<span class="sd">              normalize the quatity by number of atoms</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">plotcolor</span> <span class="o">=</span> <span class="p">[]</span>

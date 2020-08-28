@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -160,7 +164,8 @@
 <span class="sd">        Object handing the sparsification of data</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sparse_mode: str. Type of the sparse mode</span>
+<span class="sd">        sparse_mode: str</span>
+<span class="sd">                     Type of the sparse mode</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_possible_modes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">,</span> <span class="s1">&#39;cur&#39;</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="s1">&#39;sequential&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">sparse_mode</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_possible_modes</span><span class="p">:</span>
@@ -179,14 +184,18 @@
 <span class="sd">        Function handing the sparsification of data</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        desc_or_ntotal: Either a design matrix [n_sample, n_desc],</span>
+<span class="sd">        desc_or_ntotal: np.matrix or int</span>
+<span class="sd">                        Either a design matrix [n_sample, n_desc],</span>
 <span class="sd">                        or simply the total number of samples</span>
-<span class="sd">        n_or_ratio: Either the number or the fraction of sparsified points</span>
-<span class="sd">        sparse_param: additional parameter that may be needed for the specific sparsifier used</span>
+<span class="sd">        n_or_ratio: int or float </span>
+<span class="sd">                  Either the number or the fraction of sparsified points</span>
+<span class="sd">        sparse_param: int</span>
+<span class="sd">                additional parameter that may be needed for the specific sparsifier used</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        ----------</span>
-<span class="sd">        sbs: a list of the indexes for the sparsified points</span>
+<span class="sd">        sbs: list</span>
+<span class="sd">        a list of the indexes for the sparsified points</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desc_or_ntotal</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="n">n_total</span> <span class="o">=</span> <span class="n">desc_or_ntotal</span>

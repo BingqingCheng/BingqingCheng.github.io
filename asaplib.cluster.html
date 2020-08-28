@@ -85,7 +85,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules in ASAP</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules of asaplib</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="asaplib.html">asaplib package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="asaplib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="asaplib.cli.html">asaplib.cli package</a></li>
@@ -106,7 +110,6 @@
 <li class="toctree-l3"><a class="reference internal" href="asaplib.html#module-asaplib">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +158,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Modules in ASAP</a> &raquo;</li>
+          <li><a href="modules.html">modules of asaplib</a> &raquo;</li>
         
           <li><a href="asaplib.html">asaplib package</a> &raquo;</li>
         
@@ -301,14 +304,21 @@
 <blockquote>
 <div><p>Clustering by fast search and find of density peaks, Rodriguez and Laio (2014).</p>
 <p><a class="reference external" href="https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf">https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf</a></p>
-<p>$$</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
 </div></blockquote>
 <dl class="simple">
-<dt>ho_i,=,sum_j{chi(d_{ij}-d_{cut})}$$</dt><dd><p>$$ delta_i,=,min_{j:</p>
+<dt>ho_i,=,sum_j{chi(d_{ij}-d_{cut})}</dt><dd><dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p>delta_i,=,min_{j:</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <p>ho_j&gt;
-ho_i}(d_{ij})$$</p>
+ho_i}(d_{ij})</p>
 <dl class="py method">
 <dt id="asaplib.cluster.ml_cluster_fit.LAIO_DB.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">rho</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/cluster/ml_cluster_fit.html#LAIO_DB.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.cluster.ml_cluster_fit.LAIO_DB.fit" title="Permalink to this definition">¶</a></dt>
@@ -347,15 +357,16 @@ ho_i}(d_{ij})$$</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>The data array of shape</em><em> (</em><em>Nele</em><em>, </em><em>proj_dim</em><em>) </em><em>where N is the number of data points and proj_dim is the number of</em>) – </p></li>
+<li><p><strong>data</strong> (<em>np.matrix</em>) – </p></li>
+<li><p><strong>data array of shape</strong><strong> (</strong><strong>Nele</strong><strong>, </strong><strong>proj_dim</strong><strong>) </strong><strong>where N is the number of data points and proj_dim is the number of</strong> (<em>The</em>) – </p></li>
 <li><p><strong>components of the kernel matrix.</strong> (<em>projected</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p><strong>self.dc</strong> – the cutoff distance</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>self.dc, the cutoff distance</p>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -390,13 +401,33 @@ of another data point as well as self.dens_cut, the density threshold for defini
 <dl>
 <dt>Laio Clustering scheme</dt><dd><p>Clustering by fast search and find of density peaks
 <a class="reference external" href="https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf">https://science.sciencemag.org/content/sci/344/6191/1492.full.pdf</a></p>
-<p>$$</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p>rho_i,=,sum_j{chi(d_{ij}-d_{cut})}
+i.e. the local density of data point x_i</p>
 </dd>
-<dt>ho_i,=,sum_j{chi(d_{ij}-d_{cut})}$$ i.e. the local density of data point x_i</dt><dd><p>$$ delta_i,=,min_{j:</p>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p>delta_i,=,min_{j:rho_j&gt;rho_i}(d_{ij})
+i.e. the minimum distance to a neighbour with higher density</p>
 </dd>
 </dl>
-<p>ho_j&gt;
-ho_i}(d_{ij})$$ i.e. the minimum distance to a neighbour with higher density</p>
+<p>A summary of laio clustering algorithm:
+1. First do a kernel density estimation (rho_i) for each data point i
+2. For each data point i, compute the distance (delta_i) between i and j,</p>
+<blockquote>
+<div><p>j is the closet data point that has a density higher then i, i.e. rho(j) &gt; rho(i).</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Plot the decision graph, which is a scatter plot of (rho_i, delta_i)</p></li>
+<li><p>Select cluster centers ({cl}), which are the outliers in the decision graph that fulfills:
+i) rho({cl}) &gt; rhomin
+ii) delta({cl}) &gt; delta_min
+one needs to set the two parameters rhomin and delta_min.</p></li>
+<li><p>After the cluster centers are determined, data points are assigned to the nearest cluster center.</p></li>
+</ol>
+</dd>
+</dl>
+<p>one needs to set two parameters:</p>
 <dl class="py method">
 <dt id="asaplib.cluster.ml_cluster_fit.old_LAIO.estimate_delta">
 <code class="sig-name descname">estimate_delta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dist</span></em>, <em class="sig-param"><span class="n">rho</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/cluster/ml_cluster_fit.html#old_LAIO.estimate_delta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.cluster.ml_cluster_fit.old_LAIO.estimate_delta" title="Permalink to this definition">¶</a></dt>
@@ -480,7 +511,7 @@ X may be a sparse matrix, in which case only “nonzero” elements may be consi
 </div>
 <div class="section" id="module-asaplib.cluster.ml_cluster_tools">
 <span id="asaplib-cluster-ml-cluster-tools-module"></span><h2>asaplib.cluster.ml_cluster_tools module<a class="headerlink" href="#module-asaplib.cluster.ml_cluster_tools" title="Permalink to this headline">¶</a></h2>
-<p>TODO: Module-level description</p>
+<p>Tools to analyze clustering results</p>
 <dl class="py function">
 <dt id="asaplib.cluster.ml_cluster_tools.array_handling">
 <code class="sig-prename descclassname">asaplib.cluster.ml_cluster_tools.</code><code class="sig-name descname">array_handling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">plist</span></em>, <em class="sig-param"><span class="n">attribute</span><span class="o">=</span><span class="default_value">'mean'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/cluster/ml_cluster_tools.html#array_handling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.cluster.ml_cluster_tools.array_handling" title="Permalink to this definition">¶</a></dt>

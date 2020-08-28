@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -161,13 +165,17 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x: np.matrix.[n_samples, n_dim] coordinates of all the samples to be sparsified.</span>
-<span class="sd">    d: number of samples to keep</span>
-<span class="sd">    r: starting from sample of index r</span>
+<span class="sd">    x: np.matrix</span>
+<span class="sd">       [n_samples, n_dim] coordinates of all the samples to be sparsified.</span>
+<span class="sd">    d: int</span>
+<span class="sd">       number of samples to keep</span>
+<span class="sd">    r: int</span>
+<span class="sd">       starting from sample of index r</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    a list of selected samples, remaining error</span>
+<span class="sd">    sample_index: list</span>
+<span class="sd">        a list of selected samples, remaining error</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -221,13 +229,16 @@
 
         <span class="n">yx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">inew</span><span class="p">]</span>
 
-        <span class="c1"># now gets the distance between this point and all the points selected up to now (could be eliminated by caching!)</span>
-        <span class="n">syd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">n2</span><span class="p">[</span><span class="n">iy</span><span class="p">[:</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">n2</span><span class="p">[</span><span class="n">inew</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">yx</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">inew</span><span class="p">])))</span>
+        <span class="c1"># now gets the distance between this point and all the points selected</span>
+        <span class="c1"># up to now (could be eliminated by caching!)</span>
+        <span class="n">syd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">n2</span><span class="p">[</span><span class="n">iy</span><span class="p">[:</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">n2</span><span class="p">[</span><span class="n">inew</span><span class="p">]</span> <span class="o">-</span>
+                             <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">yx</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">inew</span><span class="p">])))</span>
         <span class="n">sdnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dnew</span><span class="p">)</span>
 
         <span class="c1"># list of active voronoi (we check which of the voronoi cells contain points</span>
         <span class="c1"># that might contain points closer than dmax)</span>
-        <span class="n">iactive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rvor</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dnew</span> <span class="o">+</span> <span class="n">syd</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">syd</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sdnew</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">iactive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rvor</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dnew</span> <span class="o">+</span> <span class="n">syd</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+                           <span class="o">*</span> <span class="p">(</span><span class="n">syd</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sdnew</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">rvor</span><span class="p">[</span><span class="n">iactive</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>

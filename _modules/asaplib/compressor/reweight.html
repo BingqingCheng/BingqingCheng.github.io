@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -150,10 +154,11 @@
   <h1>Source code for asaplib.compressor.reweight</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Select samples using a re-weighted distribution</span>
+
 <span class="sd">The original distribution (KDE) of the sample is</span>
-<span class="sd">\rho = exp(-F)</span>
+<span class="sd">:math: \rho = exp(-F)</span>
 <span class="sd">and we select the samples using a well-tempered distribution</span>
-<span class="sd">\rho(\lambda) = exp(-F/\lambda)  </span>
+<span class="sd">:math: \rho(\lambda) = exp(-F/\lambda)  </span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -163,13 +168,17 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters:</span>
 <span class="sd">    ------------</span>
-<span class="sd">    logkde: list, type=float. The (log of) kernel density for each sample</span>
-<span class="sd">    reweight_lambda: float, reweighting factor</span>
-<span class="sd">    n_sparse: int, number of samples to select</span>
+<span class="sd">    logkde: list, type=float</span>
+<span class="sd">            The (log of) kernel density for each sample</span>
+<span class="sd">    reweight_lambda: float</span>
+<span class="sd">              reweighting factor</span>
+<span class="sd">    n_sparse: int</span>
+<span class="sd">              number of samples to select</span>
 <span class="sd">    </span>
 <span class="sd">    Return:</span>
 <span class="sd">    ------------</span>
-<span class="sd">    sbs: list, type=int. A list of selected samples</span>
+<span class="sd">    sbs: list, type=int</span>
+<span class="sd">         A list of selected samples</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nframes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">logkde</span><span class="p">)</span>
 

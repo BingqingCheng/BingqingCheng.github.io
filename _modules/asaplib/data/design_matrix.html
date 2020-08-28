@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -162,21 +166,21 @@
 <span class="kn">from</span> <span class="nn">..fit</span> <span class="kn">import</span> <span class="n">LC_SCOREBOARD</span>
 
 <div class="viewcode-block" id="Design_Matrix"><a class="viewcode-back" href="../../../asaplib.data.html#asaplib.data.design_matrix.Design_Matrix">[docs]</a><span class="k">class</span> <span class="nc">Design_Matrix</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">whiten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">test_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">[],</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="sd">&quot;&quot;&quot;extended design matrix class</span>
+    <span class="sd">&quot;&quot;&quot;extended design matrix class</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        X : array-like, shape=[n_samples,n_desc]</span>
-<span class="sd">        Input points.</span>
-<span class="sd">        y : array-like, shape=[n_samples]</span>
-<span class="sd">        label for every point</span>
-<span class="sd">        testratio: float, ratio of the test fraction</span>
-<span class="sd">        z : array-like, shape=[n_samples]</span>
-<span class="sd">        additional label for every point</span>
-<span class="sd">        tags: array-like, strings, shape=[n_samples]</span>
-<span class="sd">        additional tags for each data point</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : array-like, shape=[n_samples,n_desc]</span>
+<span class="sd">    Input points.</span>
+<span class="sd">    y : array-like, shape=[n_samples]</span>
+<span class="sd">    label for every point</span>
+<span class="sd">    testratio: float, ratio of the test fraction</span>
+<span class="sd">    z : array-like, shape=[n_samples]</span>
+<span class="sd">    additional label for every point</span>
+<span class="sd">    tags: array-like, strings, shape=[n_samples]</span>
+<span class="sd">    additional tags for each data point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">whiten</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">test_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="p">[],</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
         <span class="c1"># sanity checks</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Length of the labels y is not the same as the design matrix X&#39;</span><span class="p">)</span>
@@ -214,7 +218,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lc_by_learner</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># learning curves</span>
 
     <span class="k">def</span> <span class="nf">_whiten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">addbias</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="c1"># scale &amp; center</span>
+        <span class="sd">&quot;&quot;&quot; scale &amp; center &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
             <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
@@ -228,6 +232,7 @@
             <span class="k">return</span> <span class="n">X</span>
 
 <div class="viewcode-block" id="Design_Matrix.save_state"><a class="viewcode-back" href="../../../asaplib.data.html#asaplib.data.design_matrix.Design_Matrix.save_state">[docs]</a>    <span class="k">def</span> <span class="nf">save_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;yaml&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;output json or yaml file&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;yaml&#39;</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;-fit-errors.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yd</span><span class="p">:</span>
                 <span class="n">ydump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_error_by_learner</span><span class="p">,</span> <span class="n">yd</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -245,10 +250,12 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        n_sparse: number of representative points</span>
+<span class="sd">        n_sparse: int</span>
+<span class="sd">                  number of representative points</span>
 <span class="sd">                  n_sparse == None means 5% of the data</span>
 <span class="sd">                  n_sparse &lt; 0 means no sparsification</span>
-<span class="sd">        sparse_mode: str. Methods to use for sparsification [cur], [fps], [random]</span>
+<span class="sd">        sparse_mode: str</span>
+<span class="sd">                  Methods to use for sparsification [cur], [fps], [random]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="c1"># set default value of n_sparse</span>
@@ -272,9 +279,11 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        learner: object. a learner object, e.g. RidgeRegression</span>
+<span class="sd">        learner: a learner object</span>
+<span class="sd">                 e.g. RidgeRegression</span>
 <span class="sd">                 needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</span>
-<span class="sd">        tag: str. The name of this learner</span>
+<span class="sd">        tag: str</span>
+<span class="sd">              The name of this learner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># sanity checks</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">):</span>
@@ -306,11 +315,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        lc_points: int, the number of points on the learning curve</span>
-<span class="sd">        lc_repeats: the number of sub-samples to take when compute the learning curve</span>
-<span class="sd">        learner: object. a learner object, e.g. RidgeRegression</span>
+<span class="sd">        lc_points: int</span>
+<span class="sd">                   the number of points on the learning curve</span>
+<span class="sd">        lc_repeats: int</span>
+<span class="sd">                the number of sub-samples to take when compute the learning curve</span>
+<span class="sd">        learner: a learner object</span>
+<span class="sd">                 e.g. RidgeRegression</span>
 <span class="sd">                 needs to have .fit(), .predict(), .get_train_test_error(), .fit_predict_error() methods</span>
-<span class="sd">        tag: str. The name of this learner</span>
+<span class="sd">        tag: str</span>
+<span class="sd">                The name of this learner</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">randomString</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 

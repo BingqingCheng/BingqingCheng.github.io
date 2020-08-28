@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -165,14 +169,21 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    X: input a covariance matrix </span>
-<span class="sd">    n_col: number of column to keep</span>
-<span class="sd">    error_estimate: compute the remaining error of the CUR</span>
-<span class="sd">    costs: a list of costs associated with each column</span>
+<span class="sd">    X: np.matrix</span>
+<span class="sd">       input a covariance matrix </span>
+<span class="sd">    n_col: int</span>
+<span class="sd">       number of column to keep</span>
+<span class="sd">    error_estimate: bool, optional</span>
+<span class="sd">       compute the remaining error of the CUR</span>
+<span class="sd">    costs: float, optional</span>
+<span class="sd">        a list of costs associated with each column</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    a list of selected columns</span>
+<span class="sd">    indices : np.array</span>
+<span class="sd">        indices of columns to choose</span>
+<span class="sd">    cur_error : np.array</span>
+<span class="sd">        the error of the decomposition</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">RX</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>

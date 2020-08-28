@@ -85,7 +85,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules in ASAP</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules of asaplib</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="asaplib.html">asaplib package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="asaplib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="asaplib.cli.html">asaplib.cli package</a></li>
@@ -106,7 +110,6 @@
 <li class="toctree-l3"><a class="reference internal" href="asaplib.html#module-asaplib">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +158,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">Modules in ASAP</a> &raquo;</li>
+          <li><a href="modules.html">modules of asaplib</a> &raquo;</li>
         
           <li><a href="asaplib.html">asaplib package</a> &raquo;</li>
         
@@ -196,24 +199,24 @@
 <dt id="asaplib.plot.plot_colors.set_color_function">
 <code class="sig-prename descclassname">asaplib.plot.plot_colors.</code><code class="sig-name descname">set_color_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fcolor</span><span class="o">=</span><span class="default_value">'none'</span></em>, <em class="sig-param"><span class="n">asapxyz</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">colorscol</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">n_samples</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">peratom</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">project_atomic</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_atomic_species</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color_from_zero</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">extensive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/plot/plot_colors.html#set_color_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.plot.plot_colors.set_color_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>obtain the essential informations to define the colors of data points
-:param fcolor:
-:type fcolor: str, the name of the file or the tag in the xyz to define the colors
+:param fcolor: the name of the file or the tag in the xyz to define the colors
+:type fcolor: str
 :param asapxyz:
 :type asapxyz: ASAPXYZ object, (optional)
-:param colorscol:
-:type colorscol: int, (optional). if the color file has more than one column, which column to use
-:param n_samples:
-:type n_samples: int, (optional). The number of data points
-:param peratom:
-:type peratom: bool, return atomic color
-:param project_atomic:
-:type project_atomic: the samples are atomic descriptors
-:param use_atomic_species:
-:type use_atomic_species: int, the atomic number of the selected species
-:param color_from_zero:
-:type color_from_zero: bool, set the min color to zero
-:param extensive:
-:type extensive: bool, normalize the quatity by number of atoms</p>
+:param colorscol: if the color file has more than one column, which column to use
+:type colorscol: int, (optional).
+:param n_samples: The number of data points
+:type n_samples: int, (optional).
+:param peratom: return atomic color
+:type peratom: bool
+:param project_atomic: the samples are atomic descriptors
+:type project_atomic: bool
+:param use_atomic_species: the atomic number of the selected species
+:type use_atomic_species: int
+:param color_from_zero: set the min color to zero
+:type color_from_zero: bool
+:param extensive: normalize the quatity by number of atoms
+:type extensive: bool</p>
 </dd></dl>
 
 </div>
@@ -400,12 +403,18 @@ every data point</p>
 <dt id="asaplib.plot.plotters.Plotters">
 <em class="property">class </em><code class="sig-prename descclassname">asaplib.plot.plotters.</code><code class="sig-name descname">Plotters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fig_spec_dict</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/plot/plotters.html#Plotters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.plot.plotters.Plotters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object handing the making of plots.
+Notice that we make all the plots on the same graph.
+A good way of using this is to
+1. make a scatter plot
+2. add clustering results (if any)
+3. add tags to annotate important points</p>
 <dl class="py method">
 <dt id="asaplib.plot.plotters.Plotters.add">
 <code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p_spec</span></em>, <em class="sig-param"><span class="n">tag</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/asaplib/plot/plotters.html#Plotters.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#asaplib.plot.plotters.Plotters.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>adding the specifications of a new kernel function
-:param p_spec:
-:type p_spec: a dictionary that specify which atomic descriptor to use</p>
+:param p_spec: specify which atomic descriptor to use
+:type p_spec: dictionary</p>
 </dd></dl>
 
 <dl class="py method">

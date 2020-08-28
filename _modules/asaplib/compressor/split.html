@@ -83,7 +83,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules in ASAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">modules of asaplib</a></li>
 </ul>
 
             
@@ -168,12 +172,17 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    xmin: lower bound in original space</span>
-<span class="sd">    xmax: upper bound in original space</span>
-<span class="sd">    n: integer giving the number of spaces (default is 5)</span>
+<span class="sd">    xmin: float</span>
+<span class="sd">          lower bound in original space</span>
+<span class="sd">    xmax: float</span>
+<span class="sd">          upper bound in original space</span>
+<span class="sd">    n: int</span>
+<span class="sd">       integer giving the number of spaces (default is 5)</span>
 
-<span class="sd">    Returns: numpy array of n evenly spaced points in log space</span>
+<span class="sd">    Returns:</span>
 <span class="sd">    -------</span>
+<span class="sd">    X: np.array</span>
+<span class="sd">       list of n evenly spaced points in log space</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -191,12 +200,17 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    n_sample: integer giving the number of samples</span>
-<span class="sd">    r: float, test ratio</span>
+<span class="sd">    n_sample: int</span>
+<span class="sd">              giving the number of samples</span>
+<span class="sd">    r: float</span>
+<span class="sd">       test ratio</span>
 
 <span class="sd">    Returns: </span>
 <span class="sd">    -------</span>
-<span class="sd">    train_list, test_list: train/test indexes</span>
+<span class="sd">    train_list: list</span>
+<span class="sd">                train indexes</span>
+<span class="sd">    test_list: list</span>
+<span class="sd">               test indexes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">r</span><span class="o">==</span><span class="mf">0.0</span><span class="p">:</span>
@@ -220,15 +234,21 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    X: array-like, shape=[n_samples,n_desc], kernel matrix</span>
-<span class="sd">    y: array-like, shape=[n_samples], labels</span>
-<span class="sd">    r: float, test ratio</span>
+<span class="sd">    X: array-like, shape=[n_samples,n_desc]</span>
+<span class="sd">       kernel matrix</span>
+<span class="sd">    y: array-like, shape=[n_samples]</span>
+<span class="sd">       labels</span>
+<span class="sd">    r: float</span>
+<span class="sd">       test ratio</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    X_train, X_test: train/test kernel matrix</span>
-<span class="sd">    y_train, y_test: train/test labels</span>
-<span class="sd">    train_list, test_list: train/test indexes</span>
+<span class="sd">    X_train, X_test: np.matrix</span>
+<span class="sd">                 train/test kernel matrix</span>
+<span class="sd">    y_train, y_test: np.array</span>
+<span class="sd">                 train/test labels</span>
+<span class="sd">    train_list, test_list: list</span>
+<span class="sd">                 train/test indexes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
@@ -281,7 +301,6 @@
         <span class="k">return</span> <span class="n">params</span></div></div>
 
 
-<span class="c1">#class LCSplit(with_metaclass(ABCMeta)):</span>
 <div class="viewcode-block" id="LCSplit"><a class="viewcode-back" href="../../../asaplib.compressor.html#asaplib.compressor.split.LCSplit">[docs]</a><span class="k">class</span> <span class="nc">LCSplit</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">train_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">cvargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_repeats</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Iterable</span><span class="p">):</span>
