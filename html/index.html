@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Automatic Selection And Prediction tools for materials and molecules &mdash; asapdoc 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> asapdoc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html">How-to: use the <cite>asaplib</cite> library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#compute-soap-descriptors">compute SOAP descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#build-a-kernel-matrix">Build a kernel Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#kernal-pca-on-environmental-similarity">kernal PCA on environmental similarity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#plot-the-result">Plot the result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules of asaplib</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">asapdoc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Automatic Selection And Prediction tools for materials and molecules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="automatic-selection-and-prediction-tools-for-materials-and-molecules">
+<h1>Automatic Selection And Prediction tools for materials and molecules<a class="headerlink" href="#automatic-selection-and-prediction-tools-for-materials-and-molecules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-usage-of-the-command-line-tool">
+<h2>Basic usage of the command line tool<a class="headerlink" href="#basic-usage-of-the-command-line-tool" title="Permalink to this headline">¶</a></h2>
+<p>Type <code class="docutils literal notranslate"><span class="pre">asap</span></code> and use the sub-commands for various tasks.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code>: generate global or atomic descriptors based on the input [ASE](<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html">https://wiki.fysik.dtu.dk/ase/ase/atoms.html</a>)) xyze file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">map</span></code>: make 2D plots using the specified design matrix. Currently PCA <code class="docutils literal notranslate"><span class="pre">pca</span></code>, sparsified kernel PCA <code class="docutils literal notranslate"><span class="pre">skpca</span></code>, UMAP <code class="docutils literal notranslate"><span class="pre">umap</span></code>, and t-SNE <code class="docutils literal notranslate"><span class="pre">tsne</span></code> are implemented.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">cluster</span></code>: perform density based clustering. Currently supports DBSCAN <code class="docutils literal notranslate"><span class="pre">dbscan</span></code> and [Fast search of density peaks](<a class="reference external" href="https://science.sciencemag.org/content/344/6191/1492">https://science.sciencemag.org/content/344/6191/1492</a>) <code class="docutils literal notranslate"><span class="pre">fdb</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">fit</span></code>: fast fit ridge regression <code class="docutils literal notranslate"><span class="pre">ridge</span></code> or sparsified kernel ridge regression model <code class="docutils literal notranslate"><span class="pre">kernelridge</span></code> based on the input design matrix and labels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">kde</span></code>: quick kernel density estimation on the design matrix. Several versions of kde available.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">select</span></code>: select a subset of frames using sparsification algorithms.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To get help string:
+<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">--help</span></code> .or. <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">subcommand</span> <span class="pre">--help</span></code> .or. <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">subcommand</span> <span class="pre">subcommand</span> <span class="pre">--help</span></code> depending which level of help you are interested in.</p>
+</div>
+</div>
+<div class="section" id="using-the-python-library">
+<h2>Using the PYTHON library<a class="headerlink" href="#using-the-python-library" title="Permalink to this headline">¶</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">python3</span></code>, one can import <code class="docutils literal notranslate"><span class="pre">asap</span></code> as a libaray using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asaplib</span>
+</pre></div>
+</div>
+<p>Please refer to the documentation of each module for available functionalities.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#first-part-of-the-command-asap-gen-desc">First part of the command <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#sub-commands">sub-commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#soap">soap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#acsf">acsf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#cm">cm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_desc.html#run">run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html">How-to: use the <cite>asaplib</cite> library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howto_asaplib_tio2.html#example-on-quick-analyisis-of-atomic-coordinates-using-a-soap-based-metric">Example on quick analyisis of atomic coordinates using a SOAP based metric</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="howto_asaplib_tio2.html#load-structures">load structures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#compute-soap-descriptors">compute SOAP descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#build-a-kernel-matrix">Build a kernel Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#kernal-pca-on-environmental-similarity">kernal PCA on environmental similarity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#plot-the-result">Plot the result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advance.html#how-to-add-your-own-atomic-or-global-descriptors">How to add your own atomic or global descriptors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules of asaplib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asaplib.html">asaplib package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="asaplib.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asaplib.html#module-asaplib">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Bingqing Cheng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

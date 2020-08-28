@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick &amp; basic example &mdash; asapdoc 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How-to: asap gen_desc" href="gen_desc.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> asapdoc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick &amp; basic example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html">How-to: use the <cite>asaplib</cite> library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#compute-soap-descriptors">compute SOAP descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#build-a-kernel-matrix">Build a kernel Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#kernal-pca-on-environmental-similarity">kernal PCA on environmental similarity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#plot-the-result">Plot the result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules of asaplib</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">asapdoc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quick &amp; basic example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/example.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-basic-example">
+<h1>Quick &amp; basic example<a class="headerlink" href="#quick-basic-example" title="Permalink to this headline">¶</a></h1>
+<p><strong>Step 1: generate a design matrix</strong></p>
+<p>The first step for a machine-learning analysis or visualization is to generate a “design matrix” made from either global descriptors or atomic descriptors. To do this, we supply <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code> with an input file that contains the atomic coordintes. Many formats are supported; anything can be read using [ase.io](<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">https://wiki.fysik.dtu.dk/ase/ase/io/io.html</a>) is supported. You can use a wildcard to specify the list of input files that matches the pattern (e.g. <code class="docutils literal notranslate"><span class="pre">POSCAR*</span></code>, <code class="docutils literal notranslate"><span class="pre">H*</span></code>, or <code class="docutils literal notranslate"><span class="pre">*.cif</span></code>). However, it is most robust if you use an extended xyz file format (units in angstrom, additional info and cell size in the comment line).</p>
+<p>As a quick example, in the folder ./tests/</p>
+<p>to generate SOAP descriptors:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>asap gen_desc --fxyz small_molecules-1000.xyz soap
+</pre></div>
+</div>
+<p>for columb matrix:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>asap gen_desc -f small_molecules-1000.xyz --no-periodic cm
+</pre></div>
+</div>
+<p><strong>Step 2: generate a low-dimensional map</strong></p>
+<p>After generating the descriptors, one can make a two-dimensional map (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">map</span></code>), or regression model (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">fit</span></code>), or clustering (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">cluster</span></code>), or select a subset of frames (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">select</span></code>), or do a clustering analysis (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">cluster</span></code>), or estimate the probablity of observing each sample (<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">kde</span></code>).</p>
+<p>For instance, to make a pca map:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>asap map -f small_molecules-SOAP.xyz -dm <span class="s1">&#39;[SOAP-n4-l3-c1.9-g0.23]&#39;</span> -c dft_formation_energy_per_atom_in_eV pca
+</pre></div>
+</div>
+<p>You can specify a list of descriptor vectors to include in the design matrix, e.g. <code class="docutils literal notranslate"><span class="pre">'[SOAP-n4-l3-c1.9-g0.23,</span> <span class="pre">SOAP-n8-l3-c5.0-g0.3]'</span></code></p>
+<p>one can use a wildcard to specify the name of all the descriptors to use for the design matrix, e.g.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>asap map -f small_molecules-SOAP.xyz -dm <span class="s1">&#39;[SOAP*]&#39;</span> -c dft_formation_energy_per_atom_in_eV pca
+</pre></div>
+</div>
+<p>or even</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>asap map -f small_molecules-SOAP.xyz -dm <span class="s1">&#39;[*]&#39;</span> -c dft_formation_energy_per_atom_in_eV pca
+</pre></div>
+</div>
+<p><strong>Step 2+: interactive visualization</strong></p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">map</span></code>, a png figure is generated. In addition, the code also output the low-dimensional coordinates of the structures and/or atomic environments. The default output is extended xyz file. One can also specify a different output format using <code class="docutils literal notranslate"><span class="pre">--output</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag. and the available options are <code class="docutils literal notranslate"><span class="pre">xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">chemiscope</span></code>.</p>
+<ul class="simple">
+<li><p>If one select <code class="docutils literal notranslate"><span class="pre">chemiscope</span></code> format, a <code class="docutils literal notranslate"><span class="pre">*.json.gz</span></code> file will be writen, which can be directly used as the input of [chemiscope](<a class="reference external" href="https://github.com/cosmo-epfl/chemiscope">https://github.com/cosmo-epfl/chemiscope</a>)</p></li>
+<li><p>If the output is in <code class="docutils literal notranslate"><span class="pre">xyz</span></code> format, it can be visualized interactively using [projection_viewer](<a class="reference external" href="https://github.com/chkunkel/projection_viewer">https://github.com/chkunkel/projection_viewer</a>).</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gen_desc.html" class="btn btn-neutral float-right" title="How-to: asap gen_desc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Bingqing Cheng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
