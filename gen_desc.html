@@ -87,6 +87,8 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How-to: asap gen_desc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output">Output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-sub-commands">Overview of sub-commands</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#asap-gen-desc">asap gen_desc</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-acsf">acsf</a></li>
@@ -179,6 +181,32 @@
 This is in general the first step to do, no matter if you want to map the dataset,
 perform regression or any other analysis. Type <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">--help</span></code> and
 <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">sub_command</span> <span class="pre">--help</span></code> for helper strings.</p>
+<div class="section" id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span></code> can read any format that is also supported by ASE.[ase.io](<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">https://wiki.fysik.dtu.dk/ase/ase/io/io.html</a>) is supported.
+For example:
+xyz, lammps-data, cif, cell, vasp, res, gromacs, …
+However, it is most thoroughly tested on extended xyz files (units in angstrom, additional info and cell size in the comment line).
+It can read in lots of files using a wildcard and some common pattern e.g. <code class="docutils literal notranslate"><span class="pre">H*.cell</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>when glob pattern is passed it should be quote: e.g.
+<code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">-f</span> <span class="pre">*.cell</span></code> will not work
+but <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">-f</span> <span class="pre">&quot;*.cell&quot;</span></code> does.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if the program gets a bit confused about the file format, try supply some additional information using <code class="docutils literal notranslate"><span class="pre">--fxyz_format</span> <span class="pre">'{...}'</span></code> flag.</p>
+</div>
+</div>
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<p>The code will output two files</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${prefix}-desc.xyz</span></code>, where <code class="docutils literal notranslate"><span class="pre">${prefix}</span></code> is determined by the string that follows <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> flag (default: ASAP). This file is an extended xyz file that contain the design matrix (descriptors for each structure and/or atomic environments).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${prefix}-desc.yaml</span></code> that contains all the meta information about how the design matrix was generated (i.e. which descriptor, hyper-parameter was used.)</p></li>
+</ul>
+</div>
 <div class="section" id="overview-of-sub-commands">
 <h2>Overview of sub-commands<a class="headerlink" href="#overview-of-sub-commands" title="Permalink to this headline">¶</a></h2>
 <p>sub-commands that controls the actual generation of the descriptor matrix:</p>
