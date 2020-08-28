@@ -84,14 +84,15 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#direct-installation">Direct installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-in-a-conda-environment">Install in a conda environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-requirements">List of requirements</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Quick &amp; basic example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gen_desc.html">How-to: asap gen_desc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html">How-to: use the <cite>asaplib</cite> library</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#compute-soap-descriptors">compute SOAP descriptors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#build-a-kernel-matrix">Build a kernel Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#kernal-pca-on-environmental-similarity">kernal PCA on environmental similarity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto_asaplib_tio2.html#plot-the-result">Plot the result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto_asaplib.html">How-to: use the <cite>asaplib</cite> library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advance.html">Advanced topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">modules of asaplib</a></li>
@@ -163,10 +164,8 @@
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">asap</span></code> supports <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3</span></code></p>
-<p>Installation:</p>
-<ul class="simple">
-<li><p>If you want a direct installation.</p></li>
-</ul>
+<div class="section" id="direct-installation">
+<h2>Direct installation<a class="headerlink" href="#direct-installation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 setup.py install --user
 </pre></div>
 </div>
@@ -174,15 +173,17 @@
 <p class="admonition-title">Note</p>
 <p>This command should automatically install any depedencies.</p>
 </div>
-<ul class="simple">
-<li><p>If you wish to use a new conda environment</p></li>
-</ul>
+</div>
+<div class="section" id="install-in-a-conda-environment">
+<h2>Install in a conda environment<a class="headerlink" href="#install-in-a-conda-environment" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda create -n myenv <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
 conda activate myenv
 python3 setup.py install
 </pre></div>
 </div>
-<p><strong>List of requirements:</strong></p>
+</div>
+<div class="section" id="list-of-requirements">
+<h2>List of requirements<a class="headerlink" href="#list-of-requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>numpy scipy scikit-learn json ase dscribe umap-learn PyYAML click</p></li>
 </ul>
@@ -192,6 +193,7 @@ python3 setup.py install
 <li><p>(for annotation without overlaps) adjustText</p></li>
 <li><p>The FCHL19 representation requires code from the development brach of the QML package. Instructions on how to install the QML package can be found on <a class="reference external" href="https://www.qmlcode.org/installation.html">https://www.qmlcode.org/installation.html</a>.</p></li>
 </ul>
+</div>
 </div>
 
 
