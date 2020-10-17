@@ -30,6 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -89,6 +90,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How-to: asap gen_desc</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#input">Input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-sub-commands">Overview of sub-commands</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#asap-gen-desc">asap gen_desc</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#asap-gen-desc-acsf">acsf</a></li>
@@ -190,7 +192,7 @@ However, it is most thoroughly tested on extended xyz files (units in angstrom, 
 It can read in lots of files using a wildcard and some common pattern e.g. <code class="docutils literal notranslate"><span class="pre">H*.cell</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>when glob pattern is passed it should be quote: e.g.
+<p>when glob pattern is passed it should be quoted: e.g.
 <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">-f</span> <span class="pre">*.cell</span></code> will not work
 but <code class="docutils literal notranslate"><span class="pre">asap</span> <span class="pre">gen_desc</span> <span class="pre">-f</span> <span class="pre">&quot;*.cell&quot;</span></code> does.</p>
 </div>
@@ -206,6 +208,18 @@ but <code class="docutils literal notranslate"><span class="pre">asap</span> <sp
 <li><p><code class="docutils literal notranslate"><span class="pre">${prefix}-desc.xyz</span></code>, where <code class="docutils literal notranslate"><span class="pre">${prefix}</span></code> is determined by the string that follows <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> flag (default: ASAP). This file is an extended xyz file that contain the design matrix (descriptors for each structure and/or atomic environments).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">${prefix}-desc.yaml</span></code> that contains all the meta information about how the design matrix was generated (i.e. which descriptor, hyper-parameter was used.)</p></li>
 </ul>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>There are two types of descriptors for atomic structures: the first type (e.g. ACSF, SOAP) starts from atomic descriptors for each atom in the structure, and then all the atomic descriptors associated with a structure are reduced to a global descriptor. The second type (e.g. Coulumb Matrix) directly generates global descriptors.</p>
+<p>To reduce the atomic descriptors of all atoms in a structure to a single vector representing the whole strucuture, <code class="docutils literal notranslate"><span class="pre">asap</span></code> calls a <code class="docutils literal notranslate"><span class="pre">reducer</span></code>, and there are different options. For example, for a structure A, the most straightforward way to get its global descriptor is to simply take the average of the atomic ones, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\Phi (A) = \dfrac{1}{N_A}\sum_{i \in A}^{N_A} \psi (\mathcal{X}_i).\]</div>
+<p>which is the <code class="docutils literal notranslate"><span class="pre">average</span></code> reducer. Alternatively, one can take the <code class="docutils literal notranslate"><span class="pre">sum</span></code>. The <code class="docutils literal notranslate"><span class="pre">moment_average</span></code> or <code class="docutils literal notranslate"><span class="pre">moment_average</span></code> reducer first take the moment of the atomic descriptors, e.g.</p>
+<div class="math notranslate nohighlight">
+\[\Phi (A) = \dfrac{1}{N_A}\sum_{i \in A}^{N_A} \psi^{z} (\mathcal{X}_i).\]</div>
+<p>where z (<code class="docutils literal notranslate"><span class="pre">--zeta/-z</span></code>) is the moment to take when converting atomic descriptors to global ones.</p>
+<p>In addition to these, one can perform the summation or the average operation on the per-element basis, by using the flag <code class="docutils literal notranslate"><span class="pre">--element_wise/-e</span></code>.</p>
 </div>
 <div class="section" id="overview-of-sub-commands">
 <h2>Overview of sub-commands<a class="headerlink" href="#overview-of-sub-commands" title="Permalink to this headline">¶</a></h2>

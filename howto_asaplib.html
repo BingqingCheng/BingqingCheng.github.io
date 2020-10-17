@@ -30,6 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -97,7 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#load-structures">load structures</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compute-soap-descriptors">compute SOAP descriptors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-a-kernel-matrix">Build a kernel Matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kernal-pca-on-environmental-similarity">kernal PCA on environmental similarity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kernel-pca-on-environmental-similarity">kernel PCA on environmental similarity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#plot-the-result">Plot the result</a></li>
 </ul>
 </li>
@@ -184,7 +185,7 @@
 <div class="section" id="load-structures">
 <h3>load structures<a class="headerlink" href="#load-structures" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">asaplib.data</span> <span class="kn">import</span> <span class="n">ASAPXYZ</span>
-<span class="n">asapxyz</span> <span class="o">=</span> <span class="n">ASAPXYZ</span><span class="p">(</span><span class="s1">&#39;P-20GPa/result-complete/combined.xyz&#39;</span><span class="p">)</span>
+<span class="n">asapxyz</span> <span class="o">=</span> <span class="n">ASAPXYZ</span><span class="p">(</span><span class="s1">&#39;P-20GPa/result-complete/combined.xyz&#39;</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># periodic=False otherwise</span>
 
 <span class="c1"># load the tags (optional, you can use these to annotate the structures)</span>
 <span class="n">tags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;P-20GPa/result-complete/ranking-complete&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">)</span>
@@ -217,12 +218,24 @@
             <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute atomic descriptors only</span>
+<span class="n">asapxyz</span><span class="o">.</span><span class="n">compute_atomic_descriptors</span><span class="p">(</span><span class="n">desc_spec_dict</span><span class="o">=</span><span class="n">soap_spec</span><span class="p">,</span>
+                                    <span class="n">sbs</span><span class="o">=</span><span class="p">[],</span>
+                                    <span class="n">tag</span><span class="o">=</span><span class="s1">&#39;tio2-atomic&#39;</span><span class="p">,</span>
+                                    <span class="n">n_process</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># if you want to retrieve the atomic descriptors computed earlier</span>
+<span class="n">dm_atomic</span> <span class="o">=</span> <span class="n">asapxyz</span><span class="o">.</span><span class="n">fetch_computed_atomic_descriptors</span><span class="p">([</span><span class="s1">&#39;soap1&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute descriptors for the whole structures</span>
 <span class="n">asapxyz</span><span class="o">.</span><span class="n">compute_global_descriptors</span><span class="p">(</span><span class="n">desc_spec_dict</span><span class="o">=</span><span class="n">desc_spec</span><span class="p">,</span>
                                     <span class="n">sbs</span><span class="o">=</span><span class="p">[],</span>
-                                    <span class="n">keep_atomic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                    <span class="n">keep_atomic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># set to True to keep the atomic descriptors</span>
                                     <span class="n">tag</span><span class="o">=</span><span class="s1">&#39;tio2&#39;</span><span class="p">,</span>
                                     <span class="n">n_process</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># can use asapxyz.fetch_computed_atomic_descriptors([&#39;soap1&#39;]) if keep_atomic=True</span>
 </pre></div>
 </div>
 </div>
@@ -236,8 +249,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="kernal-pca-on-environmental-similarity">
-<h3>kernal PCA on environmental similarity<a class="headerlink" href="#kernal-pca-on-environmental-similarity" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="kernel-pca-on-environmental-similarity">
+<h3>kernel PCA on environmental similarity<a class="headerlink" href="#kernel-pca-on-environmental-similarity" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">asaplib.reducedim</span> <span class="kn">import</span> <span class="n">Dimension_Reducers</span>
 <span class="n">dreducer</span> <span class="o">=</span> <span class="n">Dimension_Reducers</span><span class="p">(</span><span class="n">reduce_dict</span><span class="p">)</span>
 </pre></div>
